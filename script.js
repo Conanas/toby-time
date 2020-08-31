@@ -14,12 +14,13 @@ function startTimer() {
     updateReps();
     updateRepsDisplay();
     interval = setInterval(function() {
-        timeElapsed++;
-        updateTimeDisplay();
         if (timeElapsed >= restBetweenReps.value) {
             stopTimer();
             updateReps();
             updateRepsDisplay();
+        } else {
+            timeElapsed++;
+            updateTimeDisplay();
         }
     }, 1000);
 }
