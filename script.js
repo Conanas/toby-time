@@ -34,9 +34,7 @@ function stopTimer() {
 }
 
 function updateReps() {
-    if (repsElapsed == repTotal.value) {
-        repsElapsed = 0;
-    } else {
+    if (repsElapsed != repTotal.value) {
         repsElapsed++;
     }
 }
