@@ -11,12 +11,15 @@ startTimerButton.addEventListener("click", startTimer);
 
 function startTimer() {
     updateTimeDisplay();
+    repsElapsed++;
     updateRepsDisplay();
     interval = setInterval(function() {
         if (timeElapsed == restBetweenReps.value) {
             stopTimer();
-            repsElapsed++;
-            updateRepsDisplay();
+            if (repsElapsed + 1 == repTotal.value) {
+                repsElapsed++;
+                updateRepsDisplay();
+            }
         } else {
             timeElapsed++;
             updateTimeDisplay();
