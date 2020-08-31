@@ -36,7 +36,8 @@ function stopTimer() {
 function updateRepsDisplay() {
     if (repsElapsed >= repTotal.value) {
         repsElapsed = 0;
+        repsDisplay.textContent = 0;
     } else {
-        repsDisplay.textContent = `${repTotal.value - repsElapsed}`
+        repsDisplay.textContent = `${repTotal.value - repsElapsed}`;
     }
 }
