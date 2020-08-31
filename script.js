@@ -19,6 +19,7 @@ function startTimer() {
             if (repsElapsed + 1 == repTotal.value) {
                 repsElapsed++;
                 updateRepsDisplay();
+                displayToby();
             }
         } else {
             timeElapsed++;
@@ -43,4 +44,8 @@ function updateRepsDisplay() {
     } else {
         repsDisplay.textContent = `${repTotal.value - repsElapsed}`;
     }
+}
+
+function displayToby() {
+    $('#exampleModal').modal('show');
 }
