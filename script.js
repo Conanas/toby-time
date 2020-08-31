@@ -11,12 +11,11 @@ startTimerButton.addEventListener("click", startTimer);
 
 function startTimer() {
     updateTimeDisplay();
-    updateReps();
     updateRepsDisplay();
     interval = setInterval(function() {
-        if (timeElapsed >= restBetweenReps.value) {
+        if (timeElapsed == restBetweenReps.value) {
             stopTimer();
-            updateReps();
+            repsElapsed++;
             updateRepsDisplay();
         } else {
             timeElapsed++;
@@ -34,12 +33,10 @@ function stopTimer() {
     timeElapsed = 0;
 }
 
-function updateReps() {
-    if (repsElapsed != repTotal.value) {
-        repsElapsed++;
-    }
-}
-
 function updateRepsDisplay() {
-    repsDisplay.textContent = `${repTotal.value - repsElapsed}`
+    if (repsElapsed >= repTotal.value) {
+        repsElapsed = 0;
+    } else {
+        repsDisplay.textContent = `${repTotal.value - repsElapsed}`
+    }
 }
