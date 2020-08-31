@@ -1,11 +1,14 @@
 var repTotal = document.getElementById("repTotal");
 var restBetweenReps = document.getElementById("restBetweenReps");
 var repsDisplay = document.getElementById("repsDisplay");
+var timerSection = document.getElementById("timerSection");
 var timeDisplay = document.getElementById("timeDisplay");
 var startTimerButton = document.getElementById("startTimer");
 var interval;
 var timeElapsed = 0;
 var repsElapsed = 0;
+
+var showMeTobyButton = document.createElement("button");
 
 startTimerButton.addEventListener("click", startTimer);
 
@@ -19,7 +22,7 @@ function startTimer() {
             if (repsElapsed + 1 == repTotal.value) {
                 repsElapsed++;
                 updateRepsDisplay();
-                displayToby();
+                addDisplayTobyButton();
             }
         } else {
             timeElapsed++;
@@ -46,6 +49,14 @@ function updateRepsDisplay() {
     }
 }
 
+function addDisplayTobyButton() {
+    showMeTobyButton.textContent = "Show me Toby!";
+    showMeTobyButton.setAttribute("id", "showMeTobyButton");
+    timerSection.appendChild(showMeTobyButton);
+    showMeTobyButton.addEventListener("click", displayToby);
+}
+
 function displayToby() {
+    timerSection.removeChild(showMeTobyButton);
     $('#exampleModal').modal('show');
 }
