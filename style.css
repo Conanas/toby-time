@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+#repsDisplay {
+    font-size: 32px;
+}
+
 #timeDisplay {
     font-size: 80px;
 }
