@@ -23,6 +23,10 @@ body {
     font-size: 64px;
 }
 
+#setsDisplay {
+    font-size: 40px;
+}
+
 #timeDisplay {
     font-size: 160px;
 }
