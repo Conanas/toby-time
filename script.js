@@ -1,6 +1,5 @@
 // labels for reps, sets and totals
-var inputLabels = document.querySelector(".input-labels");
-var inputInputs = document.querySelector(".input-inputs");
+var inputs = document.querySelector(".inputs");
 
 // reps, sets and rests inputs
 var repTotal = document.getElementById("repTotal");
@@ -11,8 +10,8 @@ var restBetweenSets = document.getElementById("restBetweenSets");
 // reps, sets and timer display
 var repsDisplay = document.getElementById("repsDisplay");
 var setsDisplay = document.getElementById("setsDisplay");
-var timerSection = document.getElementById("timerSection");
 var timeDisplay = document.getElementById("timeDisplay");
+var timerSection = document.getElementById("timerSection");
 
 // buttons
 var startTimerButton = document.getElementById("startTimer");
@@ -28,30 +27,32 @@ var setsElapsed = 0;
 var restMode;
 var breakMode;
 
-// hide labels
-function hideInputLabels() {
-    inputLabels.setAttribute("style", "display: none;");
+
+// input labels and boxes hide/show functions
+
+// hide labels and boxes
+function hideInputs() {
+    inputs.setAttribute("style", "display: none;");
 }
 
-// show labels
-function showInputLabels() {
-    inputLabels.setAttribute("style", "display: inline block;");
+// show labels and boxes
+function showInputs() {
+    inputs.setAttribute("style", "display: inline block;");
 }
 
-// hide input boxes
-function hideInputInputs() {
-    inputInputs.setAttribute("style", "display: none;");
+// hide timer display elements
+function hideTimerDisplayElements() {
+    repsDisplay.setAttribute("style", "display: none;");
+    setsDisplay.setAttribute("style", "display: none;");
+    timeDisplay.setAttribute("style", "display: none;");
 }
 
-// show input boxes
-function showInputInputs() {
-    inputInputs.setAttribute("style", "display: inline block;");
+// show timer display elements
+function showTimerDisplayElements() {
+    repsDisplay.setAttribute("style", "display: inline block;");
+    setsDisplay.setAttribute("style", "display: inline block;");
+    timeDisplay.setAttribute("style", "display: inline block;");
 }
-
-// hide pause, stop and showToby buttons
-pauseTimerButton.setAttribute("style", "display: none;");
-stopTimerButton.setAttribute("style", "display: none;");
-showMeTobyButton.setAttribute("style", "display: none;");
 
 // display the pause button and add click event listener
 function displayPauseButton() {
@@ -98,29 +99,6 @@ function hideStartButton() {
     startTimerButton.setAttribute("style", "display: none;");
 }
 
-// start button displayed on startup and click event listener added
-startTimerButton.addEventListener("click", startTimer);
-
-// start the timer
-function startTimer() {
-    showOnStartButtons();
-    updateTimeDisplay();
-    repsElapsed++;
-    updateRepsDisplay();
-    interval = setInterval(function() {
-        if (timeElapsed == restBetweenReps.value) {
-            stopTimer();
-            if (repsElapsed + 1 == repTotal.value) {
-                repsElapsed++;
-                updateRepsDisplay();
-                displayShowMeTobyButton();
-            }
-        } else {
-            timeElapsed++;
-            updateTimeDisplay();
-        }
-    }, 1000);
-}
 
 function updateTimeDisplay() {
     timeDisplay.textContent = `${restBetweenReps.value - timeElapsed}`;
@@ -156,3 +134,68 @@ function showOnStartButtons() {
     displayPauseButton();
     displayStopButton();
 }
+
+function showCompleteMessage() {
+    var completeMessageDiv = document.createElement("div");
+    completeMessageDiv.textContent = "Complete!";
+    completeMessageDiv.setAttribute("id", "completeMessage");
+    timerSection.appendChild(completeMessageDiv);
+
+    var completeMessageInterval = setTimeout(function() {
+        timerSection.removeChild(completeMessageDiv);
+    }, 1000)
+}
+
+// start the timer
+function startTimer() {
+    hideInputs();
+    showTimerDisplayElements();
+    showOnStartButtons();
+    updateTimeDisplay();
+    repsElapsed++;
+    updateRepsDisplay();
+    interval = setInterval(function() {
+        if (timeElapsed == restBetweenReps.value) {
+            stopTimer();
+            if (repsElapsed + 1 == repTotal.value) {
+                repsElapsed++;
+                updateRepsDisplay();
+                hideTimerDisplayElements();
+                showInputs();
+                showCompleteMessage();
+                displayShowMeTobyButton();
+            }
+        } else {
+            timeElapsed++;
+            updateTimeDisplay();
+        }
+    }, 1000);
+}
+
+// stop screen from sleeping
+const requestWakeLock = async() => {
+    try {
+
+        const wakeLock = await navigator.wakeLock.request('screen');
+
+    } catch (err) {
+        // the wake lock request fails - usually system related, such low as battery
+
+        console.log(`${err.name}, ${err.message}`);
+    }
+}
+
+requestWakeLock();
+
+// on page load hide time, reps and sets displays
+
+// hide pause, stop and showToby buttons
+hidePauseButton();
+hideStopButton();
+hideShowMeTobyButton();
+
+// hide timer display elements
+hideTimerDisplayElements();
+
+// start button displayed on startup and click event listener added
+startTimerButton.addEventListener("click", startTimer);
