@@ -20,10 +20,26 @@ body {
 }
 
 #repsDisplay {
+    font-size: 32px;
+}
+
+#repsDisplayLabel {
+    width: 100%;
+}
+
+#repsDisplaySpan {
     font-size: 64px;
 }
 
 #setsDisplay {
+    font-size: 24px
+}
+
+#setsDisplayLabel {
+    width: 100%;
+}
+
+#setsDisplaySpan {
     font-size: 40px;
 }
 
