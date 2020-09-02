@@ -23,9 +23,11 @@ var showMeTobyButton = document.getElementById("showMeToby");
 
 // timer settings
 var interval;
+var breakInterval;
 var timeElapsed = 0;
+var breakTimeElapsed = 0;
 var repsElapsed = 0;
-var setsElapsed = 0;
+var setsElapsed = 1;
 var restMode;
 var breakMode;
 
@@ -140,6 +142,11 @@ function updateRepsDisplay() {
     }
 }
 
+// updates the sets left display
+function updateSetsDisplay() {
+    setsDisplaySpan.textContent = `${setTotal.value - setsElapsed}`
+}
+
 // show me Toby function
 function showMeToby() {
 
@@ -212,6 +219,9 @@ function startTimer() {
     // update the reps left display
     updateRepsDisplay();
 
+    // update the sets left display
+    updateSetsDisplay();
+
     // interval timer function
     interval = setInterval(function() {
 
@@ -223,23 +233,68 @@ function startTimer() {
             stopTimer();
 
             // if there was one more rep left
+            // end of set
             // if reps elapsed + 1 equals the rep total input
             if (repsElapsed + 1 == repTotal.value) {
 
                 // reset reps elapsed
                 repsElapsed = 0;
 
-                // hide timer display elements
-                hideTimerDisplayElements();
+                // increase sets elapsed
+                setsElapsed++;
 
-                // show input labels and boxes
-                showInputs();
+                // update sets left display
+                updateSetsDisplay();
 
-                // show complete message
-                showCompleteMessage();
+                // if there are more sets to do
+                if (setsElapsed <= setTotal.value) {
 
-                // display show me Toby button
-                displayShowMeTobyButton();
+                    // start break
+                    breakInterval = setInterval(function() {
+
+                        // when timer reaches 0
+                        if (breakTimeElapsed == restBetweenSets.value) {
+
+                            // stop break interval timer
+                            clearInterval(breakInterval);
+
+                            // reset break time elapsed
+                            breakTimeElapsed = 0;
+
+                            // do more sets
+
+                        } else {
+
+                            // increase time elapsed
+                            breakTimeElapsed++;
+
+                            // update the time display
+                            timeDisplay.textContent = `${restBetweenSets.value - breakTimeElapsed}`;
+
+                        }
+
+                    }, 1000);
+
+                } else {
+
+                    // else go back to start screen
+
+                    // reset sets elapsed
+                    setsElapsed = 1;
+
+                    // hide timer display elements
+                    hideTimerDisplayElements();
+
+                    // show input labels and boxes
+                    showInputs();
+
+                    // show complete message
+                    showCompleteMessage();
+
+                    // display show me Toby button
+                    displayShowMeTobyButton();
+
+                }
 
             }
 
