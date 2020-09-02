@@ -1,3 +1,7 @@
+// labels for reps, sets and totals
+var inputLabels = document.querySelector(".input-labels");
+var inputInputs = document.querySelector(".input-inputs");
+
 // reps, sets and rests inputs
 var repTotal = document.getElementById("repTotal");
 var restBetweenReps = document.getElementById("restBetweenReps");
@@ -23,6 +27,26 @@ var repsElapsed = 0;
 var setsElapsed = 0;
 var restMode;
 var breakMode;
+
+// hide labels
+function hideInputLabels() {
+    inputLabels.setAttribute("style", "display: none;");
+}
+
+// show labels
+function showInputLabels() {
+    inputLabels.setAttribute("style", "display: inline block;");
+}
+
+// hide input boxes
+function hideInputInputs() {
+    inputInputs.setAttribute("style", "display: none;");
+}
+
+// show input boxes
+function showInputInputs() {
+    inputInputs.setAttribute("style", "display: inline block;");
+}
 
 // hide pause, stop and showToby buttons
 pauseTimerButton.setAttribute("style", "display: none;");
