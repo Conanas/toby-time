@@ -101,48 +101,89 @@ function hideStartButton() {
     startTimerButton.setAttribute("style", "display: none;");
 }
 
-
+// update time display --- only updates reps!!!!!
 function updateTimeDisplay() {
     timeDisplay.textContent = `${restBetweenReps.value - timeElapsed}`;
 }
 
+// stops the interval timer
 function stopTimer() {
+
+    // clears the interval
     clearInterval(interval);
+
+    // resets the time elapsed
     timeElapsed = 0;
+
+    // displays the start button
     displayStartButton();
+
+    // hides the pause and stop button
     hidePauseButton();
     hideStopButton();
 }
 
+// updates the reps left display
 function updateRepsDisplay() {
+
+    // if the reps elapsed is greater than or equal to the rep total input
     if (repsElapsed >= repTotal.value) {
+
+        // reset the reps and display reps remaining to 0
         repsElapsed = 0;
         repsDisplaySpan.textContent = 0;
+
     } else {
+
+        // update the reps to display the rep total input - reps elapsed
         repsDisplaySpan.textContent = `${repTotal.value - repsElapsed}`;
     }
 }
 
+// show me Toby function
 function showMeToby() {
+
+    // hide the show me Toby button
     showMeTobyButton.setAttribute("style", "display: none;");
+
+    // show the Toby modal
     $('#exampleModal').modal('show');
 }
 
+// show the buttons on start of application
 function showOnStartButtons() {
+
+    // if show me toby button is visible
     if (showMeTobyButton.hidden == false) {
+
+        // hide show me Toby button
         showMeTobyButton.setAttribute("style", "display: none;");
     }
+
+    // hide start button
     hideStartButton();
+
+    // show pause and stop buttons
     displayPauseButton();
     displayStopButton();
 }
 
+// show the complete message upon completion of all sets and reps
 function showCompleteMessage() {
+
+    // create message div
     var completeMessageDiv = document.createElement("div");
+
+    // set text content to Complete
     completeMessageDiv.textContent = "Complete!";
+
+    // set id to completeMessage
     completeMessageDiv.setAttribute("id", "completeMessage");
+
+    // append to timer section display
     timerSection.appendChild(completeMessageDiv);
 
+    // timeout out to clear complete message
     var completeMessageInterval = setTimeout(function() {
         timerSection.removeChild(completeMessageDiv);
     }, 1000)
@@ -150,26 +191,66 @@ function showCompleteMessage() {
 
 // start the timer
 function startTimer() {
+
+    // each time the start button is pressed
+
+    // hide input labels and boxes
     hideInputs();
+
+    // show timer display elements
     showTimerDisplayElements();
+
+    // show pause and stop buttons, hide start button
     showOnStartButtons();
+
+    // update the time display to show countdown
     updateTimeDisplay();
+
+    // increased reps elapsed
     repsElapsed++;
+
+    // update the reps left display
     updateRepsDisplay();
+
+    // interval timer function
     interval = setInterval(function() {
+
+        // when timer reaches 0
+        // if timeElapsed equals rest between reps input
         if (timeElapsed == restBetweenReps.value) {
+
+            // stop the interval timer and reset time elapsed
             stopTimer();
+
+            // if there was one more rep left
+            // if reps elapsed + 1 equals the rep total input
             if (repsElapsed + 1 == repTotal.value) {
-                repsElapsed++;
-                updateRepsDisplay();
+
+                // reset reps elapsed
+                repsElapsed = 0;
+
+                // hide timer display elements
                 hideTimerDisplayElements();
+
+                // show input labels and boxes
                 showInputs();
+
+                // show complete message
                 showCompleteMessage();
+
+                // display show me Toby button
                 displayShowMeTobyButton();
+
             }
+
         } else {
+
+            // increase time elapsed
             timeElapsed++;
+
+            // update the time display
             updateTimeDisplay();
+
         }
     }, 1000);
 }
