@@ -9,7 +9,9 @@ var restBetweenSets = document.getElementById("restBetweenSets");
 
 // reps, sets and timer display
 var repsDisplay = document.getElementById("repsDisplay");
+var repsDisplaySpan = document.getElementById("repsDisplaySpan");
 var setsDisplay = document.getElementById("setsDisplay");
+var setsDisplaySpan = document.getElementById("setsDisplaySpan");
 var timeDisplay = document.getElementById("timeDisplay");
 var timerSection = document.getElementById("timerSection");
 
@@ -115,9 +117,9 @@ function stopTimer() {
 function updateRepsDisplay() {
     if (repsElapsed >= repTotal.value) {
         repsElapsed = 0;
-        repsDisplay.textContent = 0;
+        repsDisplaySpan.textContent = 0;
     } else {
-        repsDisplay.textContent = `${repTotal.value - repsElapsed}`;
+        repsDisplaySpan.textContent = `${repTotal.value - repsElapsed}`;
     }
 }
 
