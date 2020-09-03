@@ -212,6 +212,7 @@ function showCompleteMessage() {
 function startBreakTimer() {
 
     // update break time display
+    document.querySelector("body").setAttribute("style", "background-color: indianred;");
 
     // show pause and stop buttons
 
@@ -220,6 +221,8 @@ function startBreakTimer() {
 
         // when timer reaches 0
         if (breakTimeElapsed == restBetweenSets.value) {
+
+            document.querySelector("body").setAttribute("style", "background-color: darkturquoise;");
 
             // stop break interval timer
             clearInterval(breakInterval);
