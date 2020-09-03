@@ -194,7 +194,7 @@ function showCompleteMessage() {
     var completeMessageDiv = document.createElement("div");
 
     // set text content to Complete
-    completeMessageDiv.textContent = "Complete!";
+    completeMessageDiv.textContent = "Well Done Jo!";
 
     // set id to completeMessage
     completeMessageDiv.setAttribute("id", "completeMessage");
