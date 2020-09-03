@@ -17,6 +17,7 @@ var timerSection = document.getElementById("timerSection");
 
 // buttons
 var startTimerButton = document.getElementById("startTimer");
+var startBreakTimerButton = document.getElementById("startBreakTimer");
 var pauseTimerButton = document.getElementById("pauseTimer");
 var stopTimerButton = document.getElementById("stopTimer");
 var showMeTobyButton = document.getElementById("showMeToby");
@@ -76,11 +77,16 @@ function displayShowMeTobyButton() {
     showMeTobyButton.addEventListener("click", showMeToby);
 }
 
-
 // display start button and add click event listener
 function displayStartButton() {
     startTimerButton.setAttribute("style", "display: inline block;");
     startTimerButton.addEventListener("click", startTimer);
+}
+
+// show start break button and add click event listener
+function showStartBreakTimerButton() {
+    startBreakTimerButton.setAttribute("style", "display: inline block;");
+    startBreakTimerButton.addEventListener("click", startBreakTimer);
 }
 
 // hide pause button
@@ -101,6 +107,11 @@ function hideShowMeTobyButton() {
 // hide start button
 function hideStartButton() {
     startTimerButton.setAttribute("style", "display: none;");
+}
+
+// hide start break button
+function hideStartBreakTimerButton() {
+    startBreakTimerButton.setAttribute("style", "display: none;");
 }
 
 // update time display --- only updates reps!!!!!
@@ -169,6 +180,7 @@ function showOnStartButtons() {
 
     // hide start button
     hideStartButton();
+    hideStartBreakTimerButton();
 
     // show pause and stop buttons
     displayPauseButton();
@@ -196,8 +208,52 @@ function showCompleteMessage() {
     }, 1000)
 }
 
+// start break timer
+function startBreakTimer() {
+
+    // update break time display
+
+    // show pause and stop buttons
+
+    // start break interval timer
+    breakInterval = setInterval(function() {
+
+        // when timer reaches 0
+        if (breakTimeElapsed == restBetweenSets.value) {
+
+            // stop break interval timer
+            clearInterval(breakInterval);
+
+            // reset break time elapsed
+            breakTimeElapsed = 0;
+
+            // hide break timer button
+            hideStartBreakTimerButton();
+
+            // do more sets
+
+            // show start timer button
+            displayStartButton();
+
+
+        } else {
+
+            // increase time elapsed
+            breakTimeElapsed++;
+
+            // update the time display
+            timeDisplay.textContent = `${restBetweenSets.value - breakTimeElapsed}`;
+
+        }
+
+    }, 1000);
+}
+
 // start the timer
 function startTimer() {
+
+    // do first rep message
+
 
     // each time the start button is pressed
 
@@ -249,33 +305,17 @@ function startTimer() {
                 // if there are more sets to do
                 if (setsElapsed <= setTotal.value) {
 
-                    // start break
-                    breakInterval = setInterval(function() {
+                    // hide start timer button
+                    hideStartButton();
 
-                        // when timer reaches 0
-                        if (breakTimeElapsed == restBetweenSets.value) {
-
-                            // stop break interval timer
-                            clearInterval(breakInterval);
-
-                            // reset break time elapsed
-                            breakTimeElapsed = 0;
-
-                            // do more sets
-
-                        } else {
-
-                            // increase time elapsed
-                            breakTimeElapsed++;
-
-                            // update the time display
-                            timeDisplay.textContent = `${restBetweenSets.value - breakTimeElapsed}`;
-
-                        }
-
-                    }, 1000);
+                    // show start break button
+                    // start break when button is clicked
+                    showStartBreakTimerButton();
 
                 } else {
+
+                    // do last reps message
+
 
                     // else go back to start screen
 
@@ -328,6 +368,7 @@ requestWakeLock();
 // on page load hide time, reps and sets displays
 
 // hide pause, stop and showToby buttons
+hideStartBreakTimerButton();
 hidePauseButton();
 hideStopButton();
 hideShowMeTobyButton();
