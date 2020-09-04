@@ -169,27 +169,6 @@ function showOnStartButtons() {
     displayStopButton();
 }
 
-// show the complete message upon completion of all sets and reps
-function showCompleteMessage() {
-
-    // create message div
-    var completeMessageDiv = document.createElement("div");
-
-    // set text content to Complete
-    completeMessageDiv.textContent = "Well Done Jo!";
-
-    // set id to completeMessage
-    completeMessageDiv.setAttribute("id", "completeMessage");
-
-    // append to timer section display
-    timerSection.appendChild(completeMessageDiv);
-
-    // timeout out to clear complete message
-    var completeMessageInterval = setTimeout(function() {
-        timerSection.removeChild(completeMessageDiv);
-    }, 1000)
-}
-
 // start break timer
 function startBreakTimer() {
 
@@ -285,7 +264,6 @@ function startTimer() {
                     setsElapsed = 1;
                     hideTimerDisplayElements();
                     showInputs();
-                    showCompleteMessage();
                     showMeToby();
 
                 }
