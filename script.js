@@ -20,7 +20,6 @@ var startTimerButton = document.getElementById("startTimer");
 var startBreakTimerButton = document.getElementById("startBreakTimer");
 var pauseTimerButton = document.getElementById("pauseTimer");
 var stopTimerButton = document.getElementById("stopTimer");
-var showMeTobyButton = document.getElementById("showMeToby");
 
 // timer settings
 var interval;
@@ -71,12 +70,6 @@ function displayStopButton() {
     stopTimerButton.addEventListener("click", stopTimer);
 }
 
-// display showMeToby button and add click event listener
-function displayShowMeTobyButton() {
-    showMeTobyButton.setAttribute("style", "display: inline block;");
-    showMeTobyButton.addEventListener("click", showMeToby);
-}
-
 // display start button and add click event listener
 function displayStartButton() {
     startTimerButton.setAttribute("style", "display: inline block;");
@@ -97,11 +90,6 @@ function hidePauseButton() {
 // hide stop button
 function hideStopButton() {
     stopTimerButton.setAttribute("style", "display: none;");
-}
-
-// hide showMeToby button
-function hideShowMeTobyButton() {
-    showMeTobyButton.setAttribute("style", "display: none;");
 }
 
 // hide start button
@@ -165,22 +153,12 @@ function updateSetsDisplay() {
 // show me Toby function
 function showMeToby() {
 
-    // hide the show me Toby button
-    showMeTobyButton.setAttribute("style", "display: none;");
-
     // show the Toby modal
     $('#exampleModal').modal('show');
 }
 
 // show the buttons on start of application
 function showOnStartButtons() {
-
-    // if show me toby button is visible
-    if (showMeTobyButton.hidden == false) {
-
-        // hide show me Toby button
-        showMeTobyButton.setAttribute("style", "display: none;");
-    }
 
     // hide start button
     hideStartButton();
@@ -221,6 +199,9 @@ function startBreakTimer() {
     updateTimeDisplay();
 
     // show pause and stop buttons
+    hideStartBreakTimerButton();
+    displayPauseButton();
+    displayStopButton();
 
     // start break interval timer
     breakInterval = setInterval(function() {
@@ -238,9 +219,9 @@ function startBreakTimer() {
             hideStartBreakTimerButton();
             repsElapsed = 0;
             updateRepsDisplay();
-
-            // do more sets
             displayStartButton();
+            hidePauseButton();
+            hideStopButton();
 
         } else {
 
@@ -305,7 +286,7 @@ function startTimer() {
                     hideTimerDisplayElements();
                     showInputs();
                     showCompleteMessage();
-                    displayShowMeTobyButton();
+                    showMeToby();
 
                 }
 
@@ -342,7 +323,6 @@ requestWakeLock();
 hideStartBreakTimerButton();
 hidePauseButton();
 hideStopButton();
-hideShowMeTobyButton();
 
 // hide timer display elements
 hideTimerDisplayElements();
