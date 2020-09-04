@@ -117,7 +117,7 @@ function hideStartBreakTimerButton() {
 // update time display --- only updates reps!!!!!
 function updateTimeDisplay() {
     if (breakMode) {
-        timeDisplay.textContent = `${restBetweensets.value - breakTimeElapsed}`;
+        timeDisplay.textContent = `${restBetweenSets.value - breakTimeElapsed}`;
     } else {
         timeDisplay.textContent = `${restBetweenReps.value - timeElapsed}`;
     }
@@ -215,10 +215,8 @@ function showCompleteMessage() {
 // start break timer
 function startBreakTimer() {
 
-    // break mode set
+    // at start of break timer
     breakMode = true;
-
-    // update break time display
     document.querySelector("body").setAttribute("style", "background-color: indianred;");
     updateTimeDisplay();
 
@@ -227,34 +225,27 @@ function startBreakTimer() {
     // start break interval timer
     breakInterval = setInterval(function() {
 
-        // when timer reaches 0
+        // check if break has finished
         if (breakTimeElapsed == restBetweenSets.value) {
 
+            // when break timer finishes
             breakMode = false;
-
             document.querySelector("body").setAttribute("style", "background-color: darkturquoise;");
-
-            // stop break interval timer
             clearInterval(breakInterval);
-
-            // reset break time elapsed
             breakTimeElapsed = 0;
-
-            // hide break timer button
+            setsElapsed++;
+            updateSetsDisplay();
             hideStartBreakTimerButton();
+            repsElapsed = 0;
+            updateRepsDisplay();
 
             // do more sets
-
-            // show start timer button
             displayStartButton();
-
 
         } else {
 
-            // increase time elapsed
+            // break timer has not finished
             breakTimeElapsed++;
-
-            // update the time display
             timeDisplay.textContent = `${restBetweenSets.value - breakTimeElapsed}`;
 
         }
@@ -265,86 +256,55 @@ function startBreakTimer() {
 // start the timer
 function startTimer() {
 
-    // do first rep message
+    // on start of rest timer
 
+    // do first rep message
 
     // each time the start button is pressed
 
-    // hide input labels and boxes
     hideInputs();
-
-    // show timer display elements
     showTimerDisplayElements();
-
-    // show pause and stop buttons, hide start button
     showOnStartButtons();
-
-    // update the time display to show countdown
     updateTimeDisplay();
-
-    // increased reps elapsed
     repsElapsed++;
-
-    // update the reps left display
     updateRepsDisplay();
-
-    // update the sets left display
     updateSetsDisplay();
 
-    // interval timer function
+    // start rest timer
     interval = setInterval(function() {
 
-        // when timer reaches 0
-        // if timeElapsed equals rest between reps input
+        // check if rep timer has finished
         if (timeElapsed == restBetweenReps.value) {
 
-            // stop the interval timer and reset time elapsed
+            // when rep timer has finished
             stopTimer();
 
-            // if there was one more rep left
-            // end of set
-            // if reps elapsed + 1 equals the rep total input
+            // check if this is the end of set/end of reps
             if (repsElapsed + 1 == repTotal.value) {
 
-                // reset reps elapsed
-                repsElapsed = 0;
+                // on last rep
+                repsElapsed++;
 
-                // increase sets elapsed
-                setsElapsed++;
+                // check if there are more sets to do
+                if (setsElapsed < setTotal.value) {
 
-                // update sets left display
-                updateSetsDisplay();
-
-                // if there are more sets to do
-                if (setsElapsed <= setTotal.value) {
-
-                    // hide start timer button
+                    // if more sets to do
                     hideStartButton();
-
-                    // show start break button
-                    // start break when button is clicked
                     showStartBreakTimerButton();
+                    updateRepsDisplay();
 
                 } else {
 
+                    // no more sets to do
                     // do last reps message
 
 
                     // else go back to start screen
 
-                    // reset sets elapsed
                     setsElapsed = 1;
-
-                    // hide timer display elements
                     hideTimerDisplayElements();
-
-                    // show input labels and boxes
                     showInputs();
-
-                    // show complete message
                     showCompleteMessage();
-
-                    // display show me Toby button
                     displayShowMeTobyButton();
 
                 }
@@ -353,10 +313,8 @@ function startTimer() {
 
         } else {
 
-            // increase time elapsed
+            // if rep timer has not finished
             timeElapsed++;
-
-            // update the time display
             updateTimeDisplay();
 
         }
