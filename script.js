@@ -30,7 +30,7 @@ var breakTimeElapsed = 0;
 var repsElapsed = 0;
 var setsElapsed = 1;
 var restMode;
-var breakMode;
+var breakMode = false;
 
 
 // input labels and boxes hide/show functions
@@ -116,7 +116,11 @@ function hideStartBreakTimerButton() {
 
 // update time display --- only updates reps!!!!!
 function updateTimeDisplay() {
-    timeDisplay.textContent = `${restBetweenReps.value - timeElapsed}`;
+    if (breakMode) {
+        timeDisplay.textContent = `${restBetweensets.value - breakTimeElapsed}`;
+    } else {
+        timeDisplay.textContent = `${restBetweenReps.value - timeElapsed}`;
+    }
 }
 
 // stops the interval timer
@@ -211,8 +215,12 @@ function showCompleteMessage() {
 // start break timer
 function startBreakTimer() {
 
+    // break mode set
+    breakMode = true;
+
     // update break time display
     document.querySelector("body").setAttribute("style", "background-color: indianred;");
+    updateTimeDisplay();
 
     // show pause and stop buttons
 
@@ -221,6 +229,8 @@ function startBreakTimer() {
 
         // when timer reaches 0
         if (breakTimeElapsed == restBetweenSets.value) {
+
+            breakMode = false;
 
             document.querySelector("body").setAttribute("style", "background-color: darkturquoise;");
 
