@@ -23,6 +23,8 @@ body {
     line-height: 1.2;
 }
 
+.input-form {}
+
 #repsDisplay {
     font-size: 32px;
 }
