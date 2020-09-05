@@ -407,7 +407,7 @@ function startBreakTimer() {
     displayStopButton();
 
     // start break interval
-    startBreakTimer();
+    startBreakInterval();
 
 }
 
