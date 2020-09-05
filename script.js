@@ -30,6 +30,7 @@ var repsElapsed = 0;
 var setsElapsed = 1;
 var restMode;
 var breakMode = false;
+var firstRep = true;
 
 
 // input labels and boxes hide/show functions
@@ -169,6 +170,19 @@ function showOnStartButtons() {
     displayStopButton();
 }
 
+// check inputs for validity
+function checkInputs() {
+
+    // check reps
+
+    // check rest time
+
+    // check sets
+
+    // check break time
+
+}
+
 // start break timer
 function startBreakTimer() {
 
@@ -216,14 +230,22 @@ function startBreakTimer() {
 // start the timer
 function startTimer() {
 
+    // check if first rep
+    if (firstRep) {
+
+        // if first rep 
+        hideInputs();
+        showTimerDisplayElements();
+        checkInputs();
+        firstRep = false;
+
+    }
+
     // on start of rest timer
 
     // do first rep message
 
     // each time the start button is pressed
-
-    hideInputs();
-    showTimerDisplayElements();
     showOnStartButtons();
     updateTimeDisplay();
     repsElapsed++;
