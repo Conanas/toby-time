@@ -21,6 +21,10 @@ var startBreakTimerButton = document.getElementById("startBreakTimer");
 var pauseTimerButton = document.getElementById("pauseTimer");
 var stopTimerButton = document.getElementById("stopTimer");
 
+// toast
+var toast = $(".toast");
+var toastBody = $(".toast-body");
+
 // timer settings
 var interval;
 var breakInterval;
@@ -68,7 +72,7 @@ function displayPauseButton() {
 // display the stop button and add click event listener
 function displayStopButton() {
     stopTimerButton.setAttribute("style", "display: inline block;");
-    stopTimerButton.addEventListener("click", stopTimer);
+    stopTimerButton.addEventListener("click", stopTimerButtonClicked);
 }
 
 // display start button and add click event listener
@@ -112,14 +116,16 @@ function updateTimeDisplay() {
     }
 }
 
-// stops the interval timer
+// stops the interval timer and goes back to input screen
 function stopTimer() {
 
     // clears the interval
     clearInterval(interval);
+    clearInterval(breakInterval);
 
     // resets the time elapsed
     timeElapsed = 0;
+    breakTimeElapsed = 0;
 
     // displays the start button
     displayStartButton();
@@ -127,6 +133,33 @@ function stopTimer() {
     // hides the pause and stop button
     hidePauseButton();
     hideStopButton();
+
+}
+
+// stop timer button was pressed
+function stopTimerButtonClicked() {
+
+    // stop the timer
+    stopTimer();
+
+    // check if breakMode
+    if (breakMode) {
+        breakMode = false;
+        document.querySelector("body").setAttribute("style", "background-color: darkturquoise;");
+    }
+
+    // hide timer display elements
+    hideTimerDisplayElements();
+
+    // show inputs
+    showInputs();
+
+    // reset reps and sets
+    repsElapsed = 0;
+    setsElapsed = 0;
+    firstRep = true;
+    inputsValid = false;
+
 }
 
 // updates the reps left display
@@ -180,15 +213,16 @@ function checkInputs() {
         if (repTotal.value === "" || repTotal.value == 0) {
 
             // if no reps then go back to start and alert
-            alert("No reps");
-
+            toastBody.text("Please enter reps")
+            toast.toast('show');
         } else
 
         // check rest time
         if (restBetweenReps.value === "" || restBetweenReps.value == 0) {
 
             // if no rest then go back to start and alert
-            alert("No rest time");
+            toastBody.text("Please enter rest time")
+            toast.toast('show');
 
         } else
 
@@ -196,7 +230,8 @@ function checkInputs() {
         if (setTotal.value === "" || setTotal.value == 0) {
 
             // if no sets then assume 1 set
-            alert("No sets");
+            toastBody.text("Please enter sets")
+            toast.toast('show');
 
         } else
 
@@ -205,7 +240,8 @@ function checkInputs() {
 
             // if there is more than 1 set then there needs to be a break
             // if no break then go back to start and alert
-            alert("No break time");
+            toastBody.text("Please enter break time")
+            toast.toast('show');
 
         } else {
 
