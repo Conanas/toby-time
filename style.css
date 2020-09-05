@@ -3,9 +3,9 @@ header {
 }
 
 header h1 {
-    font-size: 52px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 body {
@@ -29,10 +29,12 @@ body {
 
 #repsDisplayLabel {
     width: 100%;
+    margin: 0px;
+    font-size: 24px;
 }
 
 #repsDisplaySpan {
-    font-size: 64px;
+    font-size: 40px;
 }
 
 #setsDisplay {
@@ -41,6 +43,7 @@ body {
 
 #setsDisplayLabel {
     width: 100%;
+    margin: 0px;
 }
 
 #setsDisplaySpan {
@@ -48,16 +51,11 @@ body {
 }
 
 #timeDisplay {
-    font-size: 160px;
+    font-size: 132px;
 }
 
 button {
-    text-size: 32px;
-}
-
-#completeMessage {
-    margin: 20px;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 #toby-image {
