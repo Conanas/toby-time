@@ -27,11 +27,11 @@ var breakInterval;
 var timeElapsed = 0;
 var breakTimeElapsed = 0;
 var repsElapsed = 0;
-var setsElapsed = 1;
+var setsElapsed = 0;
 var restMode;
 var breakMode = false;
 var firstRep = true;
-
+var inputsValid = false;
 
 // input labels and boxes hide/show functions
 
@@ -74,7 +74,7 @@ function displayStopButton() {
 // display start button and add click event listener
 function displayStartButton() {
     startTimerButton.setAttribute("style", "display: inline block;");
-    startTimerButton.addEventListener("click", startTimer);
+    startTimerButton.addEventListener("click", checkInputs);
 }
 
 // show start break button and add click event listener
@@ -103,7 +103,7 @@ function hideStartBreakTimerButton() {
     startBreakTimerButton.setAttribute("style", "display: none;");
 }
 
-// update time display --- only updates reps!!!!!
+// update time display for rest and break time
 function updateTimeDisplay() {
     if (breakMode) {
         timeDisplay.textContent = `${restBetweenSets.value - breakTimeElapsed}`;
@@ -173,13 +173,52 @@ function showOnStartButtons() {
 // check inputs for validity
 function checkInputs() {
 
-    // check reps
+    // check if inputs are valid
+    if (inputsValid === false) {
 
-    // check rest time
+        // check reps
+        if (repTotal.value === "" || repTotal.value == 0) {
 
-    // check sets
+            // if no reps then go back to start and alert
+            alert("No reps");
 
-    // check break time
+        } else
+
+        // check rest time
+        if (restBetweenReps.value === "" || restBetweenReps.value == 0) {
+
+            // if no rest then go back to start and alert
+            alert("No rest time");
+
+        } else
+
+        // check sets
+        if (setTotal.value === "" || setTotal.value == 0) {
+
+            // if no sets then assume 1 set
+            alert("No sets");
+
+        } else
+
+        // check break time
+        if (restBetweenSets.value === "" || restBetweenSets.value == 0) {
+
+            // if there is more than 1 set then there needs to be a break
+            // if no break then go back to start and alert
+            alert("No break time");
+
+        } else {
+
+            // start timer if inputs are valid
+            inputsValid = true;
+            startTimer();
+        }
+
+    } else {
+
+        startTimer();
+
+    }
 
 }
 
@@ -236,8 +275,8 @@ function startTimer() {
         // if first rep 
         hideInputs();
         showTimerDisplayElements();
-        checkInputs();
         firstRep = false;
+        setsElapsed++;
 
     }
 
@@ -283,10 +322,13 @@ function startTimer() {
 
                     // else go back to start screen
 
-                    setsElapsed = 1;
+                    setsElapsed = 0;
+                    repsElapsed = 0;
                     hideTimerDisplayElements();
                     showInputs();
                     showMeToby();
+                    inputsValid = false;
+                    firstRep = true;
 
                 }
 
@@ -328,4 +370,4 @@ hideStopButton();
 hideTimerDisplayElements();
 
 // start button displayed on startup and click event listener added
-startTimerButton.addEventListener("click", startTimer);
+startTimerButton.addEventListener("click", checkInputs);
