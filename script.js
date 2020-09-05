@@ -19,6 +19,7 @@ var timerSection = document.getElementById("timerSection");
 var startTimerButton = document.getElementById("startTimer");
 var startBreakTimerButton = document.getElementById("startBreakTimer");
 var pauseTimerButton = document.getElementById("pauseTimer");
+var resumeTimerButton = document.getElementById("resumeTimer");
 var stopTimerButton = document.getElementById("stopTimer");
 
 // toast
@@ -69,6 +70,12 @@ function displayPauseButton() {
     pauseTimerButton.addEventListener("click", pauseTimer);
 }
 
+// display the resume button and add click event listener
+function displayResumeButton() {
+    resumeTimerButton.setAttribute("style", "display: inline block;");
+    resumeTimerButton.addEventListener("click", resumeTimer);
+}
+
 // display the stop button and add click event listener
 function displayStopButton() {
     stopTimerButton.setAttribute("style", "display: inline block;");
@@ -90,6 +97,11 @@ function showStartBreakTimerButton() {
 // hide pause button
 function hidePauseButton() {
     pauseTimerButton.setAttribute("style", "display: none;");
+}
+
+// hide resume button
+function hideResumeButton() {
+    resumeTimerButton.setAttribute("style", "display: none;");
 }
 
 // hide stop button
@@ -133,6 +145,37 @@ function stopTimer() {
     // hides the pause and stop button
     hidePauseButton();
     hideStopButton();
+
+}
+
+// pause the timer
+function pauseTimer() {
+
+    // stop the timers
+    // check breakMode
+    if (breakMode) {
+        clearInterval(breakInterval);
+    } else {
+        clearInterval(interval);
+    }
+
+    displayResumeButton();
+    hidePauseButton();
+    hideStopButton();
+
+}
+
+// resume the timer
+function resumeTimer() {
+
+    if (breakMode) {
+        startBreakInterval();
+    } else {
+        startRestInterval();
+    }
+    hideResumeButton();
+    displayPauseButton();
+    displayStopButton();
 
 }
 
@@ -258,74 +301,8 @@ function checkInputs() {
 
 }
 
-// start break timer
-function startBreakTimer() {
-
-    // at start of break timer
-    breakMode = true;
-    document.querySelector("body").setAttribute("style", "background-color: indianred;");
-    updateTimeDisplay();
-
-    // show pause and stop buttons
-    hideStartBreakTimerButton();
-    displayPauseButton();
-    displayStopButton();
-
-    // start break interval timer
-    breakInterval = setInterval(function() {
-
-        // check if break has finished
-        if (breakTimeElapsed == restBetweenSets.value) {
-
-            // when break timer finishes
-            breakMode = false;
-            document.querySelector("body").setAttribute("style", "background-color: darkturquoise;");
-            clearInterval(breakInterval);
-            breakTimeElapsed = 0;
-            setsElapsed++;
-            updateSetsDisplay();
-            hideStartBreakTimerButton();
-            repsElapsed = 0;
-            updateRepsDisplay();
-            displayStartButton();
-            hidePauseButton();
-            hideStopButton();
-
-        } else {
-
-            // break timer has not finished
-            breakTimeElapsed++;
-            timeDisplay.textContent = `${restBetweenSets.value - breakTimeElapsed}`;
-
-        }
-
-    }, 1000);
-}
-
-// start the timer
-function startTimer() {
-
-    // check if first rep
-    if (firstRep) {
-
-        // if first rep 
-        hideInputs();
-        showTimerDisplayElements();
-        firstRep = false;
-        setsElapsed++;
-
-    }
-
-    // on start of rest timer
-
-    // do first rep message
-
-    // each time the start button is pressed
-    showOnStartButtons();
-    updateTimeDisplay();
-    repsElapsed++;
-    updateRepsDisplay();
-    updateSetsDisplay();
+// rest interval function
+function startRestInterval() {
 
     // start rest timer
     interval = setInterval(function() {
@@ -378,6 +355,90 @@ function startTimer() {
 
         }
     }, 1000);
+
+}
+
+// break interval function
+function startBreakInterval() {
+
+    // start break interval timer
+    breakInterval = setInterval(function() {
+
+        // check if break has finished
+        if (breakTimeElapsed == restBetweenSets.value) {
+
+            // when break timer finishes
+            breakMode = false;
+            document.querySelector("body").setAttribute("style", "background-color: darkturquoise;");
+            clearInterval(breakInterval);
+            breakTimeElapsed = 0;
+            setsElapsed++;
+            updateSetsDisplay();
+            hideStartBreakTimerButton();
+            repsElapsed = 0;
+            updateRepsDisplay();
+            displayStartButton();
+            hidePauseButton();
+            hideStopButton();
+
+        } else {
+
+            // break timer has not finished
+            breakTimeElapsed++;
+            timeDisplay.textContent = `${restBetweenSets.value - breakTimeElapsed}`;
+
+        }
+
+    }, 1000);
+
+}
+
+// start break timer
+function startBreakTimer() {
+
+    // at start of break timer
+    breakMode = true;
+    document.querySelector("body").setAttribute("style", "background-color: indianred;");
+    updateTimeDisplay();
+
+    // show pause and stop buttons
+    hideStartBreakTimerButton();
+    displayPauseButton();
+    displayStopButton();
+
+    // start break interval
+    startBreakTimer();
+
+}
+
+// start the timer
+function startTimer() {
+
+    // check if first rep
+    if (firstRep) {
+
+        // if first rep 
+        hideInputs();
+        showTimerDisplayElements();
+        firstRep = false;
+        setsElapsed++;
+
+    }
+
+    // on start of rest timer
+
+    // do first rep message
+
+    // each time the start button is pressed
+    showOnStartButtons();
+    updateTimeDisplay();
+    repsElapsed++;
+    updateRepsDisplay();
+    updateSetsDisplay();
+
+    // start the rest interval
+    startRestInterval();
+
 }
 
 // stop screen from sleeping
@@ -400,6 +461,7 @@ requestWakeLock();
 // hide pause, stop and showToby buttons
 hideStartBreakTimerButton();
 hidePauseButton();
+hideResumeButton();
 hideStopButton();
 
 // hide timer display elements
