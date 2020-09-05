@@ -16,6 +16,8 @@ body {
     width: 80px;
 }
 
+.input-inputs {}
+
 #timerSection {
     text-align: center;
     line-height: 1.2;
@@ -47,6 +49,10 @@ body {
 
 #timeDisplay {
     font-size: 160px;
+}
+
+button {
+    text-size: 32px;
 }
 
 #completeMessage {
