@@ -516,6 +516,7 @@ hideStartBreakTimerButton();
 hidePauseButton();
 hideResumeButton();
 hideStopButton();
+hideFullScreenButton();
 hideCloseFullScreenButton();
 
 // hide timer display elements
