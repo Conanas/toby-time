@@ -525,3 +525,4 @@ hideTimerDisplayElements();
 // start button displayed on startup and click event listener added
 startTimerButton.addEventListener("click", checkInputs);
 // fullScreenButton.on("click", openFullscreen);
+openFullscreen();
