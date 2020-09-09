@@ -516,7 +516,6 @@ hideStartBreakTimerButton();
 hidePauseButton();
 hideResumeButton();
 hideStopButton();
-hideFullScreenButton();
 hideCloseFullScreenButton();
 
 // hide timer display elements
@@ -524,5 +523,4 @@ hideTimerDisplayElements();
 
 // start button displayed on startup and click event listener added
 startTimerButton.addEventListener("click", checkInputs);
-// fullScreenButton.on("click", openFullscreen);
-openFullscreen();
+fullScreenButton.on("click", openFullscreen);

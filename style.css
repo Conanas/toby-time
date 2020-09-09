@@ -1,11 +1,14 @@
-header {
-    text-align: center;
-}
+header {}
 
 header h1 {
     font-size: 56px;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+#full-screen {
+    background-color: transparent;
+    border-color: transparent;
 }
 
 body {
