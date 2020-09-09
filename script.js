@@ -21,6 +21,8 @@ var startBreakTimerButton = document.getElementById("startBreakTimer");
 var pauseTimerButton = document.getElementById("pauseTimer");
 var resumeTimerButton = document.getElementById("resumeTimer");
 var stopTimerButton = document.getElementById("stopTimer");
+var fullScreenButton = $("#full-screen");
+var closeFullScreenButton = $("#close-full-screen");
 
 // toast
 var toast = $(".toast");
@@ -94,6 +96,18 @@ function showStartBreakTimerButton() {
     startBreakTimerButton.addEventListener("click", startBreakTimer);
 }
 
+// show full screen button
+function showFullScreenButton() {
+    fullScreenButton.attr("style", "display: inline block;");
+    fullScreenButton.on("click", openFullscreen);
+}
+
+// show close full screen button
+function showCloseFullScreenButton() {
+    closeFullScreenButton.attr("style", "display: inline block;");
+    closefullScreenButton.on("click", closeFullscreen);
+}
+
 // hide pause button
 function hidePauseButton() {
     pauseTimerButton.setAttribute("style", "display: none;");
@@ -117,6 +131,16 @@ function hideStartButton() {
 // hide start break button
 function hideStartBreakTimerButton() {
     startBreakTimerButton.setAttribute("style", "display: none;");
+}
+
+// hide full screen button
+function hideFullScreenButton() {
+    fullScreenButton.attr("style", "display: none;");
+}
+
+// hide close full screen button
+function hideCloseFullScreenButton() {
+    closeFullScreenButton.attr("style", "display: none;");
 }
 
 // update time display for rest and break time
@@ -441,6 +465,35 @@ function startTimer() {
 
 }
 
+/* Get the documentElement (<html>) to display the page in fullscreen */
+var elem = document.documentElement;
+
+/* View in fullscreen */
+function openFullscreen() {
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { /* Firefox */
+        elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE/Edge */
+        elem.msRequestFullscreen();
+    }
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { /* Firefox */
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE/Edge */
+        document.msExitFullscreen();
+    }
+}
+
 // stop screen from sleeping
 const requestWakeLock = async() => {
     try {
@@ -463,9 +516,11 @@ hideStartBreakTimerButton();
 hidePauseButton();
 hideResumeButton();
 hideStopButton();
+hideCloseFullScreenButton();
 
 // hide timer display elements
 hideTimerDisplayElements();
 
 // start button displayed on startup and click event listener added
 startTimerButton.addEventListener("click", checkInputs);
+fullScreenButton.on("click", openFullscreen);
