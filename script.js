@@ -105,7 +105,7 @@ function showFullScreenButton() {
 // show close full screen button
 function showCloseFullScreenButton() {
     closeFullScreenButton.attr("style", "display: inline block;");
-    closefullScreenButton.on("click", closeFullscreen);
+    closeFullScreenButton.on("click", closeFullscreen);
 }
 
 // hide pause button
@@ -479,6 +479,8 @@ function openFullscreen() {
     } else if (elem.msRequestFullscreen) { /* IE/Edge */
         elem.msRequestFullscreen();
     }
+    hideFullScreenButton();
+    showCloseFullScreenButton();
 }
 
 /* Close fullscreen */
@@ -492,6 +494,8 @@ function closeFullscreen() {
     } else if (document.msExitFullscreen) { /* IE/Edge */
         document.msExitFullscreen();
     }
+    hideCloseFullScreenButton();
+    showFullScreenButton();
 }
 
 // stop screen from sleeping
@@ -522,5 +526,5 @@ hideCloseFullScreenButton();
 hideTimerDisplayElements();
 
 // start button displayed on startup and click event listener added
-startTimerButton.addEventListener("click", checkInputs);
-fullScreenButton.on("click", openFullscreen);
+displayStartButton();
+showFullScreenButton();
