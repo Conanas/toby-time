@@ -1,4 +1,7 @@
-header {}
+header {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
 
 header h1 {
     font-size: 8vh;
