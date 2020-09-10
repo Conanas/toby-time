@@ -465,6 +465,7 @@ function startTimer() {
 
 }
 
+// Full screen functions and variables
 /* Get the documentElement (<html>) to display the page in fullscreen */
 var elem = document.documentElement;
 
@@ -498,6 +499,7 @@ function closeFullscreen() {
     showFullScreenButton();
 }
 
+// screen wakelock request
 // stop screen from sleeping
 const requestWakeLock = async() => {
     try {
@@ -514,7 +516,6 @@ const requestWakeLock = async() => {
 requestWakeLock();
 
 // on page load hide time, reps and sets displays
-
 // hide pause, stop and showToby buttons
 hideStartBreakTimerButton();
 hidePauseButton();
