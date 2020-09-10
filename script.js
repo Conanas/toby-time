@@ -49,7 +49,7 @@ function hideInputs() {
 
 // show labels and boxes
 function showInputs() {
-    inputs.setAttribute("style", "display: inline block;");
+    inputs.setAttribute("style", "display: inline block")
 }
 
 // hide timer display elements
