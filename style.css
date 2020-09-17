@@ -5,13 +5,14 @@ header {
 
 header h1 {
     font-size: 8vh;
-    margin-top: 20px;
     margin-bottom: 20px;
 }
 
 .screen-size {
     background-color: transparent;
     border-color: transparent;
+    border: 0px;
+    padding: 0px 6px 0 0;
 }
 
 body {
