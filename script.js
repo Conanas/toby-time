@@ -40,6 +40,25 @@ var breakMode = false;
 var firstRep = true;
 var inputsValid = false;
 
+// sounds variables
+var mySound = new sound("./assets/sounds/start-beeps.wav");
+
+// sounds
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function() {
+        this.sound.play();
+    }
+    this.stop = function() {
+        this.sound.pause();
+    }
+}
+
 // input labels and boxes hide/show functions
 
 // hide labels and boxes
@@ -166,10 +185,8 @@ function stopTimer() {
     // displays the start button
     displayStartButton();
 
-    // hides the pause and stop button
+    // hides the pause button
     hidePauseButton();
-    hideStopButton();
-
 }
 
 // pause the timer
@@ -185,8 +202,6 @@ function pauseTimer() {
 
     displayResumeButton();
     hidePauseButton();
-    hideStopButton();
-
 }
 
 // resume the timer
@@ -199,8 +214,6 @@ function resumeTimer() {
     }
     hideResumeButton();
     displayPauseButton();
-    displayStopButton();
-
 }
 
 // stop timer button was pressed
@@ -208,6 +221,10 @@ function stopTimerButtonClicked() {
 
     // stop the timer
     stopTimer();
+    hideStopButton();
+    hideStartBreakTimerButton();
+    hidePauseButton();
+    hideResumeButton();
 
     // check if breakMode
     if (breakMode) {
@@ -325,11 +342,27 @@ function checkInputs() {
 
 }
 
+function checkToPlaySound() {
+    if (breakMode) {
+        if (breakTimeElapsed == restBetweenSets.value - 4) {
+            mySound.play();
+        }
+    } else {
+        if (timeElapsed == restBetweenReps.value - 4) {
+            mySound.play();
+        }
+    }
+
+}
+
 // rest interval function
 function startRestInterval() {
 
     // start rest timer
     interval = setInterval(function() {
+
+        // check if 3 seconds left for sounds
+        checkToPlaySound();
 
         // check if rep timer has finished
         if (timeElapsed == restBetweenReps.value) {
@@ -388,6 +421,9 @@ function startBreakInterval() {
     // start break interval timer
     breakInterval = setInterval(function() {
 
+        // check if 3 seconds left for sounds
+        checkToPlaySound();
+
         // check if break has finished
         if (breakTimeElapsed == restBetweenSets.value) {
 
@@ -403,7 +439,6 @@ function startBreakInterval() {
             updateRepsDisplay();
             displayStartButton();
             hidePauseButton();
-            hideStopButton();
 
         } else {
 
@@ -429,6 +464,10 @@ function startBreakTimer() {
     hideStartBreakTimerButton();
     displayPauseButton();
     displayStopButton();
+
+    if (timeDisplay.textContent === "3") {
+        mySound.play();
+    }
 
     // start break interval
     startBreakInterval();
@@ -459,6 +498,10 @@ function startTimer() {
     repsElapsed++;
     updateRepsDisplay();
     updateSetsDisplay();
+
+    if (timeDisplay.textContent === "3") {
+        mySound.play();
+    }
 
     // start the rest interval
     startRestInterval();
