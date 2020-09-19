@@ -1,3 +1,8 @@
+:root {
+    --body-background-rest: darkturquoise;
+    --body-background-break: indianred;
+}
+
 header {
     padding-right: 0px !important;
     padding-left: 0px !important;
@@ -16,7 +21,7 @@ header h1 {
 }
 
 body {
-    background-color: darkturquoise;
+    background-color: var(--body-background-rest);
 }
 
 .input-labels {
@@ -24,7 +29,7 @@ body {
 }
 
 .input-inputs {
-    border-radius: 12px;
+    border-radius: 6px;
 }
 
 #timerSection {
