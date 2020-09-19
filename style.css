@@ -23,7 +23,9 @@ body {
     width: 80px;
 }
 
-.input-inputs {}
+.input-inputs {
+    border-radius: 12px;
+}
 
 #timerSection {
     text-align: center;
@@ -65,6 +67,7 @@ body {
 
 button {
     font-size: 24px;
+    border-radius: 12px;
 }
 
 #toby-image {
