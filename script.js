@@ -369,7 +369,7 @@ function startRestInterval() {
     interval = setInterval(function() {
 
         // check if 3 seconds left for sounds
-        checkToPlaySound();
+        // checkToPlaySound();
 
         // check if rep timer has finished
         if (timeElapsed == restBetweenReps.value) {
@@ -429,7 +429,7 @@ function startBreakInterval() {
     breakInterval = setInterval(function() {
 
         // check if 3 seconds left for sounds
-        checkToPlaySound();
+        // checkToPlaySound();
 
         // check if break has finished
         if (breakTimeElapsed == restBetweenSets.value) {
@@ -475,9 +475,9 @@ function startBreakTimer() {
     // show sleeping toby modal
     showSleepingToby();
 
-    if (timeDisplay.textContent === "3") {
-        mySound.play();
-    }
+    // if (timeDisplay.textContent === "3") {
+    //     mySound.play();
+    // }
 
     // start break interval
     startBreakInterval();
@@ -509,9 +509,9 @@ function startTimer() {
     updateRepsDisplay();
     updateSetsDisplay();
 
-    if (timeDisplay.textContent === "3") {
-        mySound.play();
-    }
+    // if (timeDisplay.textContent === "3") {
+    //     mySound.play();
+    // }
 
     // start the rest interval
     startRestInterval();
