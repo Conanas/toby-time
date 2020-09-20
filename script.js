@@ -59,6 +59,48 @@ var inputsValid = false;
 //     }
 // }
 
+// plus and minus functions for inputs
+
+// minus 1 rep from the rep input
+function minusReps() {
+
+}
+
+// add 1 rep to the rep input
+function plusReps() {
+
+}
+
+// minus 1 second from the rest input
+function minusRest() {
+
+}
+
+// add 1 second to the rest input
+function plusRest() {
+
+}
+
+// minus 1 set from the set input
+function minusSets() {
+
+}
+
+// add 1 set to the set input
+function plusSets() {
+
+}
+
+// minus 1 second from the break input
+function minusBreak() {
+
+}
+
+// add 1 second to the break input
+function plusBreak() {
+
+}
+
 // input labels and boxes hide/show functions
 
 // hide labels and boxes
@@ -66,9 +108,17 @@ function hideInputs() {
     inputs.setAttribute("style", "display: none;");
 }
 
-// show labels and boxes
+// show labels and boxes and add event listeners to plus and minus boxes
 function showInputs() {
-    inputs.setAttribute("style", "display: inline block")
+    inputs.setAttribute("style", "display: inline block");
+    $("#minus-reps").on("click", minusReps);
+    $("#plus-reps").on("click", plusReps);
+    $("#minus-rest").on("click", minusRest);
+    $("#plus-rest").on("click", plusRest);
+    $("#minus-sets").on("click", minusSets);
+    $("#plus-sets").on("click", plusSets);
+    $("#minus-break").on("click", minusBreak);
+    $("#plus-break").on("click", plusBreak);
 }
 
 // hide timer display elements
@@ -570,6 +620,9 @@ const requestWakeLock = async() => {
 }
 
 requestWakeLock();
+
+// show inputs
+showInputs();
 
 // on page load hide time, reps and sets displays
 // hide pause, stop and showToby buttons
