@@ -25,11 +25,18 @@ body {
 }
 
 .input-labels {
+    /* position: relative; */
     width: 80px;
+    /* left: -10%; */
 }
 
 .input-inputs {
-    border-radius: 6px;
+    /* position: relative; */
+    width: 4em;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    /* left: -10%; */
 }
 
 #timerSection {
@@ -37,7 +44,10 @@ body {
     line-height: 1.2;
 }
 
-.input-form {}
+.input-form {
+    text-align: center;
+    padding-right: 1em;
+}
 
 #repsDisplay {
     font-size: 32px;
