@@ -63,42 +63,50 @@ var inputsValid = false;
 
 // minus 1 rep from the rep input
 function minusReps() {
-
+    if (repTotal.value > 1) {
+        --repTotal.value;
+    }
 }
 
 // add 1 rep to the rep input
 function plusReps() {
-
+    ++repTotal.value;
 }
 
 // minus 1 second from the rest input
 function minusRest() {
-
+    if (restBetweenReps.value > 1) {
+        --restBetweenReps.value;
+    }
 }
 
 // add 1 second to the rest input
 function plusRest() {
-
+    ++restBetweenReps.value;
 }
 
 // minus 1 set from the set input
 function minusSets() {
-
+    if (setTotal.value > 1) {
+        --setTotal.value;
+    }
 }
 
 // add 1 set to the set input
 function plusSets() {
-
+    ++setTotal.value;
 }
 
 // minus 1 second from the break input
 function minusBreak() {
-
+    if (restBetweenSets.value > 1) {
+        --restBetweenSets.value;
+    }
 }
 
 // add 1 second to the break input
 function plusBreak() {
-
+    ++restBetweenSets.value;
 }
 
 // input labels and boxes hide/show functions
