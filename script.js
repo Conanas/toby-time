@@ -40,24 +40,24 @@ var breakMode = false;
 var firstRep = true;
 var inputsValid = false;
 
-// sounds variables
-var mySound = new sound("./assets/sounds/start-beeps.wav");
+// // sounds variables
+// var mySound = new sound("./assets/sounds/start-beeps.wav");
 
-// sounds
-function sound(src) {
-    this.sound = document.createElement("audio");
-    this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
-    this.play = function() {
-        this.sound.play();
-    }
-    this.stop = function() {
-        this.sound.pause();
-    }
-}
+// // sounds
+// function sound(src) {
+//     this.sound = document.createElement("audio");
+//     this.sound.src = src;
+//     this.sound.setAttribute("preload", "auto");
+//     this.sound.setAttribute("controls", "none");
+//     this.sound.style.display = "none";
+//     document.body.appendChild(this.sound);
+//     this.play = function() {
+//         this.sound.play();
+//     }
+//     this.stop = function() {
+//         this.sound.pause();
+//     }
+// }
 
 // input labels and boxes hide/show functions
 
@@ -185,8 +185,10 @@ function stopTimer() {
     // displays the start button
     displayStartButton();
 
-    // hides the pause button
+    // hides the pause and stop button
     hidePauseButton();
+    hideStopButton();
+
 }
 
 // pause the timer
@@ -202,6 +204,8 @@ function pauseTimer() {
 
     displayResumeButton();
     hidePauseButton();
+    hideStopButton();
+
 }
 
 // resume the timer
@@ -214,6 +218,8 @@ function resumeTimer() {
     }
     hideResumeButton();
     displayPauseButton();
+    displayStopButton();
+
 }
 
 // stop timer button was pressed
@@ -221,10 +227,6 @@ function stopTimerButtonClicked() {
 
     // stop the timer
     stopTimer();
-    hideStopButton();
-    hideStartBreakTimerButton();
-    hidePauseButton();
-    hideResumeButton();
 
     // check if breakMode
     if (breakMode) {
@@ -275,12 +277,12 @@ function showMeToby() {
     $('#exampleModal').modal('show');
 }
 
-// show sleeping Toby
-function showSleepingToby() {
+// // show sleeping Toby
+// function showSleepingToby() {
 
-    // show the sleeping toby modal
-    $('#sleepingModal').modal('show');
-}
+//     // show the sleeping toby modal
+//     $('#sleepingModal').modal('show');
+// }
 
 // show the buttons on start of application
 function showOnStartButtons() {
@@ -349,18 +351,18 @@ function checkInputs() {
 
 }
 
-function checkToPlaySound() {
-    if (breakMode) {
-        if (breakTimeElapsed == restBetweenSets.value - 4) {
-            mySound.play();
-        }
-    } else {
-        if (timeElapsed == restBetweenReps.value - 4) {
-            mySound.play();
-        }
-    }
+// function checkToPlaySound() {
+//     if (breakMode) {
+//         if (breakTimeElapsed == restBetweenSets.value - 4) {
+//             mySound.play();
+//         }
+//     } else {
+//         if (timeElapsed == restBetweenReps.value - 4) {
+//             mySound.play();
+//         }
+//     }
 
-}
+// }
 
 // rest interval function
 function startRestInterval() {
@@ -436,7 +438,7 @@ function startBreakInterval() {
 
             // when break timer finishes
             breakMode = false;
-            document.querySelector("body").setAttribute("style", "background-color: var(--body-background-rest);");
+            document.querySelector("body").setAttribute("style", "background-color: darkturquoise;");
             clearInterval(breakInterval);
             breakTimeElapsed = 0;
             setsElapsed++;
@@ -446,6 +448,7 @@ function startBreakInterval() {
             updateRepsDisplay();
             displayStartButton();
             hidePauseButton();
+            hideStopButton();
 
         } else {
 
@@ -464,7 +467,7 @@ function startBreakTimer() {
 
     // at start of break timer
     breakMode = true;
-    document.querySelector("body").setAttribute("style", "background-color: var(--body-background-break);");
+    document.querySelector("body").setAttribute("style", "background-color: indianred;");
     updateTimeDisplay();
 
     // show pause and stop buttons
