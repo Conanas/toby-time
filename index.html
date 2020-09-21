@@ -34,6 +34,8 @@
             <div class="col inputs">
                 <form class="input-form">
 
+                    <hr>
+
                     <label for="repTotal" class="input-labels">Reps:</label>
                     <i class="far fa-minus-square" id="minus-reps"></i>
                     <input type="number" id="repTotal" class="input-inputs" name="repTotal" value="3">
@@ -63,9 +65,17 @@
         <div class="row">
             <div class="col">
                 <section id="timerSection">
-                    <div id="repsDisplay"><label for="repsDisplaySpan" id="repsDisplayLabel">Reps Left: </label><span id="repsDisplaySpan">0</span></div>
-                    <div id="setsDisplay"><label for="repsDisplaySpan" id="setsDisplayLabel">Sets Left: </label><span id="setsDisplaySpan">0</span></div>
+                    <br>
+                    <div id="repsDisplay">
+                        <label for="repsDisplaySpan" id="repsDisplayLabel">Reps Left: </label>
+                        <span id="repsDisplaySpan">0</span>
+                    </div>
+                    <div id="setsDisplay">
+                        <label for="repsDisplaySpan" id="setsDisplayLabel">Sets Left: </label>
+                        <span id="setsDisplaySpan">0</span>
+                    </div>
                     <div id="timeDisplay">0</div>
+                    <br>
                     <button class="timer-buttons" id="startTimer">Start</button>
                     <button class="timer-buttons" id="startBreakTimer">Start Break</button>
                     <button class="timer-buttons" id="pauseTimer">Pause</button>
