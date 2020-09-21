@@ -24,29 +24,26 @@ body {
     background-color: var(--body-background-rest);
 }
 
+.input-form {
+    font-size: 2em;
+    text-align: center;
+    padding-right: 20px;
+}
+
 .input-labels {
-    /* position: relative; */
-    width: 80px;
-    /* left: -10%; */
+    width: 100px;
 }
 
 .input-inputs {
-    /* position: relative; */
-    width: 4em;
+    width: 80px;
     text-align: center;
     background-color: transparent;
     border: none;
-    /* left: -10%; */
 }
 
 #timerSection {
     text-align: center;
     line-height: 1.2;
-}
-
-.input-form {
-    text-align: center;
-    padding-right: 1em;
 }
 
 #repsDisplay {
