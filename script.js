@@ -534,7 +534,7 @@ function startBreakTimer() {
     displayStopButton();
 
     // show sleeping toby modal
-    showSleepingToby();
+    // showSleepingToby();
 
     // if (timeDisplay.textContent === "3") {
     //     mySound.play();
