@@ -2,18 +2,30 @@
     --body-background-rest: darkturquoise;
     --body-background-break: indianred;
     --font-montserrat: 'Montserrat', sans-serif;
+    /* weights: 100, 300, 400 */
     --font-raleway: 'Raleway', sans-serif;
+    /* weights: 300 */
     --font-robot-condensed: 'Roboto Condensed', sans-serif;
+    /* weights: 300, 400 */
+    --body-font: var(--font-robot-condensed);
+    --body-font-weight: 300;
+    --header-font: var(--font-raleway);
+    --header-font-weight: 300;
+    --button-font: var(--font-raleway);
+    --button-font-weight: 300;
 }
 
 body {
     background-color: var(--body-background-rest);
-    font-family: var(--font-montserrat);
+    font-family: var(--body-font);
+    font-weight: var(--body-font-weight);
 }
 
 header {
     padding-right: 0px !important;
     padding-left: 0px !important;
+    font-family: var(--header-font);
+    font-weight: var(--header-font-weight);
 }
 
 header h1 {
@@ -82,7 +94,9 @@ header h1 {
 }
 
 button {
-    font-size: 1.75em;
+    font-family: var(--button-font);
+    font-weight: var(--button-font-weight);
+    font-size: 1.25em;
     padding: 0.5em 1em;
     border: 1px solid black;
 }
