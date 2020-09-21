@@ -496,7 +496,7 @@ function startBreakInterval() {
 
             // when break timer finishes
             breakMode = false;
-            document.querySelector("body").setAttribute("style", "background-color: darkturquoise;");
+            document.querySelector("body").setAttribute("style", "background-color: var(--body-background-rest);");
             clearInterval(breakInterval);
             breakTimeElapsed = 0;
             setsElapsed++;
@@ -525,7 +525,7 @@ function startBreakTimer() {
 
     // at start of break timer
     breakMode = true;
-    document.querySelector("body").setAttribute("style", "background-color: indianred;");
+    document.querySelector("body").setAttribute("style", "background-color: var(--body-background-break);");
     updateTimeDisplay();
 
     // show pause and stop buttons
@@ -641,7 +641,7 @@ const requestWakeLock = async() => {
     } catch (err) {
         // the wake lock request fails - usually system related, such low as battery
 
-        console.log(`${err.name}, ${err.message}`);
+        alert(`${err.name}, ${err.message}`);
     }
 }
 
