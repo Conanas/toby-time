@@ -40,24 +40,24 @@ var breakMode = false;
 var firstRep = true;
 var inputsValid = false;
 
-// // sounds variables
-// var mySound = new sound("./assets/sounds/start-beeps.wav");
+// sounds variables
+var mySound = new sound("./assets/sounds/start-beeps.wav");
 
-// // sounds
-// function sound(src) {
-//     this.sound = document.createElement("audio");
-//     this.sound.src = src;
-//     this.sound.setAttribute("preload", "auto");
-//     this.sound.setAttribute("controls", "none");
-//     this.sound.style.display = "none";
-//     document.body.appendChild(this.sound);
-//     this.play = function() {
-//         this.sound.play();
-//     }
-//     this.stop = function() {
-//         this.sound.pause();
-//     }
-// }
+// sounds
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function() {
+        this.sound.play();
+    }
+    this.stop = function() {
+        this.sound.pause();
+    }
+}
 
 // plus and minus functions for inputs
 
@@ -409,18 +409,17 @@ function checkInputs() {
 
 }
 
-// function checkToPlaySound() {
-//     if (breakMode) {
-//         if (breakTimeElapsed == restBetweenSets.value - 4) {
-//             mySound.play();
-//         }
-//     } else {
-//         if (timeElapsed == restBetweenReps.value - 4) {
-//             mySound.play();
-//         }
-//     }
-
-// }
+function checkToPlaySound() {
+    if (breakMode) {
+        if (breakTimeElapsed == restBetweenSets.value - 4) {
+            mySound.play();
+        }
+    } else {
+        if (timeElapsed == restBetweenReps.value - 4) {
+            mySound.play();
+        }
+    }
+}
 
 // rest interval function
 function startRestInterval() {
@@ -429,7 +428,7 @@ function startRestInterval() {
     interval = setInterval(function() {
 
         // check if 3 seconds left for sounds
-        // checkToPlaySound();
+        checkToPlaySound();
 
         // check if rep timer has finished
         if (timeElapsed == restBetweenReps.value) {
@@ -489,7 +488,7 @@ function startBreakInterval() {
     breakInterval = setInterval(function() {
 
         // check if 3 seconds left for sounds
-        // checkToPlaySound();
+        checkToPlaySound();
 
         // check if break has finished
         if (breakTimeElapsed == restBetweenSets.value) {
@@ -536,9 +535,9 @@ function startBreakTimer() {
     // show sleeping toby modal
     // showSleepingToby();
 
-    // if (timeDisplay.textContent === "3") {
-    //     mySound.play();
-    // }
+    if (timeDisplay.textContent === "3") {
+        mySound.play();
+    }
 
     // start break interval
     startBreakInterval();
@@ -570,9 +569,9 @@ function startTimer() {
     updateRepsDisplay();
     updateSetsDisplay();
 
-    // if (timeDisplay.textContent === "3") {
-    //     mySound.play();
-    // }
+    if (timeDisplay.textContent === "3") {
+        mySound.play();
+    }
 
     // start the rest interval
     startRestInterval();
