@@ -1,7 +1,8 @@
 :root {
     --blue-60: #62c7d0;
     --grey-35: #575b5b;
-    --body-text-color: var(--grey-35);
+    --grey-25: #3e4141;
+    --body-text-color: var(--grey-25);
     --body-background-rest: var(--blue-60);
     --body-background-break: indianred;
     --font-montserrat: 'Montserrat', sans-serif;
@@ -106,10 +107,7 @@ button {
     border: 1px solid black;
 }
 
-.timer-buttons {
-    position: relative;
-    top: 6em;
-}
+.timer-buttons {}
 
 #toby-image {
     width: 100%;
