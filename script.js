@@ -613,22 +613,6 @@ function closeFullscreen() {
     showFullScreenButton();
 }
 
-// screen wakelock request
-// stop screen from sleeping
-const requestWakeLock = async() => {
-    try {
-
-        const wakeLock = await navigator.wakeLock.request('screen');
-
-    } catch (err) {
-        // the wake lock request fails - usually system related, such low as battery
-
-        console.log(`${err.name}, ${err.message}`);
-    }
-}
-
-requestWakeLock();
-
 // show inputs
 showInputs();
 
@@ -646,3 +630,19 @@ hideTimerDisplayElements();
 // start button displayed on startup and click event listener added
 displayStartButton();
 showFullScreenButton();
+
+// screen wakelock request
+// stop screen from sleeping
+const requestWakeLock = async() => {
+    try {
+
+        const wakeLock = await navigator.wakeLock.request('screen');
+
+    } catch (err) {
+        // the wake lock request fails - usually system related, such low as battery
+
+        console.log(`${err.name}, ${err.message}`);
+    }
+}
+
+requestWakeLock();
