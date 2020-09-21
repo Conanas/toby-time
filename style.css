@@ -1,6 +1,14 @@
 :root {
     --body-background-rest: darkturquoise;
     --body-background-break: indianred;
+    --font-montserrat: 'Montserrat', sans-serif;
+    --font-raleway: 'Raleway', sans-serif;
+    --font-robot-condensed: 'Roboto Condensed', sans-serif;
+}
+
+body {
+    background-color: var(--body-background-rest);
+    font-family: var(--font-montserrat);
 }
 
 header {
@@ -18,10 +26,6 @@ header h1 {
     border-color: transparent;
     border: 0px;
     padding: 0px 6px 0 0;
-}
-
-body {
-    background-color: var(--body-background-rest);
 }
 
 .input-form {
