@@ -64,49 +64,49 @@ function sound(src) {
 // minus 1 rep from the rep input
 function minusReps() {
     if (repTotal.value > 1) {
-        --repTotal.value;
+        repTotal.value -= 1;
     }
 }
 
 // add 1 rep to the rep input
 function plusReps() {
-    ++repTotal.value;
+    repTotal.value = parseInt(repTotal.value) + 1;
 }
 
 // minus 1 second from the rest input
 function minusRest() {
     if (restBetweenReps.value > 1) {
-        --restBetweenReps.value;
+        restBetweenReps.value -= 1;
     }
 }
 
 // add 1 second to the rest input
 function plusRest() {
-    ++restBetweenReps.value;
+    restBetweenReps.value = parseInt(restBetweenReps.value) + 1;
 }
 
 // minus 1 set from the set input
 function minusSets() {
     if (setTotal.value > 1) {
-        --setTotal.value;
+        setTotal.value -= 1;
     }
 }
 
 // add 1 set to the set input
 function plusSets() {
-    ++setTotal.value;
+    setTotal.value = parseInt(setTotal.value) + 1;
 }
 
 // minus 1 second from the break input
 function minusBreak() {
     if (restBetweenSets.value > 1) {
-        --restBetweenSets.value;
+        restBetweenSets.value -= 1;
     }
 }
 
 // add 1 second to the break input
 function plusBreak() {
-    ++restBetweenSets.value;
+    restBetweenSets.value = parseInt(restBetweenSets.value) + 1;
 }
 
 // input labels and boxes hide/show functions
@@ -119,14 +119,6 @@ function hideInputs() {
 // show labels and boxes and add event listeners to plus and minus boxes
 function showInputs() {
     inputs.setAttribute("style", "display: inline block");
-    $("#minus-reps").on("click", minusReps);
-    $("#plus-reps").on("click", plusReps);
-    $("#minus-rest").on("click", minusRest);
-    $("#plus-rest").on("click", plusRest);
-    $("#minus-sets").on("click", minusSets);
-    $("#plus-sets").on("click", plusSets);
-    $("#minus-break").on("click", minusBreak);
-    $("#plus-break").on("click", plusBreak);
 }
 
 // hide timer display elements
@@ -146,43 +138,36 @@ function showTimerDisplayElements() {
 // display the pause button and add click event listener
 function displayPauseButton() {
     pauseTimerButton.setAttribute("style", "display: inline block;");
-    pauseTimerButton.addEventListener("click", pauseTimer);
 }
 
 // display the resume button and add click event listener
 function displayResumeButton() {
     resumeTimerButton.setAttribute("style", "display: inline block;");
-    resumeTimerButton.addEventListener("click", resumeTimer);
 }
 
 // display the stop button and add click event listener
 function displayStopButton() {
     stopTimerButton.setAttribute("style", "display: inline block;");
-    stopTimerButton.addEventListener("click", stopTimerButtonClicked);
 }
 
 // display start button and add click event listener
 function displayStartButton() {
     startTimerButton.setAttribute("style", "display: inline block;");
-    startTimerButton.addEventListener("click", checkInputs);
 }
 
 // show start break button and add click event listener
 function showStartBreakTimerButton() {
     startBreakTimerButton.setAttribute("style", "display: inline block;");
-    startBreakTimerButton.addEventListener("click", startBreakTimer);
 }
 
 // show full screen button
 function showFullScreenButton() {
     fullScreenButton.attr("style", "display: inline block;");
-    fullScreenButton.on("click", openFullscreen);
 }
 
 // show close full screen button
 function showCloseFullScreenButton() {
     closeFullScreenButton.attr("style", "display: inline block;");
-    closeFullScreenButton.on("click", closeFullscreen);
 }
 
 // hide pause button
@@ -614,6 +599,22 @@ function closeFullscreen() {
 
 // show inputs
 showInputs();
+
+$("#minus-reps").on("click", minusReps);
+$("#plus-reps").on("click", plusReps);
+$("#minus-rest").on("click", minusRest);
+$("#plus-rest").on("click", plusRest);
+$("#minus-sets").on("click", minusSets);
+$("#plus-sets").on("click", plusSets);
+$("#minus-break").on("click", minusBreak);
+$("#plus-break").on("click", plusBreak);
+pauseTimerButton.addEventListener("click", pauseTimer);
+resumeTimerButton.addEventListener("click", resumeTimer);
+stopTimerButton.addEventListener("click", stopTimerButtonClicked);
+startTimerButton.addEventListener("click", checkInputs);
+startBreakTimerButton.addEventListener("click", startBreakTimer);
+fullScreenButton.on("click", openFullscreen);
+closeFullScreenButton.on("click", closeFullscreen);
 
 // on page load hide time, reps and sets displays
 // hide pause, stop and showToby buttons
