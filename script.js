@@ -522,8 +522,9 @@ function updateLoadButton(event) {
 }
 
 function showLocalStorageList() {
-    if (localStorage.length === 0) {
-        $("#load-form").text("There are no saved presets");
+    if (localStorage.length === 0 ||
+        localStorage.getItem("lastInputs") != null && localStorage.length === 1) {
+        $("#load-form").append(`<p>There are no saved presets</p>`);
     } else {
         for (var i = localStorage.length - 1; i >= 0; i--) {
             var key = localStorage.key(i);
@@ -542,6 +543,7 @@ function showLoadModal() {
     $("#load-form input").remove();
     $("#load-form label").remove();
     $("#load-form br").remove();
+    $("#load-form p").remove();
     showLocalStorageList();
     $('#load-modal').modal('show');
 }
