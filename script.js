@@ -16,6 +16,7 @@ var timeDisplay = $("#timeDisplay");
 var timerSection = $("#timerSection");
 
 // buttons
+var saveButton = $("#save-button");
 var startTimerButton = $("#startTimer");
 var startBreakTimerButton = $("#startBreakTimer");
 var pauseTimerButton = $("#pauseTimer");
@@ -233,8 +234,9 @@ function updateSetsDisplay() {
 
 // show me Toby function
 function showMeToby() {
-
-    // show the Toby modal
+    $("#exampleModalLabel").text("You're Amazing Mama!");
+    $("#toby-image").show();
+    $("#modal-form").hide();
     $('#exampleModal').modal('show');
 }
 
@@ -516,6 +518,26 @@ function closeFullscreen() {
     fullScreenButton.show();
 }
 
+function showSaveModal() {
+    $("#exampleModalLabel").text("Save");
+    $("#toby-image").hide();
+    $("#modal-form").show();
+    $('#exampleModal').modal('show');
+    $("#modal-save-button").on("click", saveInputs);
+}
+
+function saveInputs(event) {
+    event.preventDefault();
+    var saveName = $("#modal-save-input").val();
+    var saveObject = {
+        reps: repTotal.val(),
+        rest: restBetweenReps.val(),
+        sets: setTotal.val(),
+        break: restBetweenSets.val()
+    }
+    localStorage.setItem(saveName, JSON.stringify(saveObject));
+}
+
 function saveLastInputs() {
     var saveObject = {
         reps: repTotal.val(),
@@ -563,6 +585,7 @@ startTimerButton.on("click", checkInputs);
 startBreakTimerButton.on("click", startBreakTimer);
 fullScreenButton.on("click", openFullscreen);
 closeFullScreenButton.on("click", closeFullscreen);
+saveButton.on("click", showSaveModal);
 
 // on page load hide time, reps and sets displays
 // hide pause, stop and showToby buttons
