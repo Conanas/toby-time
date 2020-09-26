@@ -72,6 +72,9 @@ function minusReps() {
 
 // add 1 rep to the rep input
 function plusReps() {
+    if (repTotal.val() === "") {
+        repTotal.val(0)
+    }
     repTotal.val(parseInt(repTotal.val()) + 1);
 }
 
@@ -84,6 +87,9 @@ function minusRest() {
 
 // add 1 second to the rest input
 function plusRest() {
+    if (restBetweenReps.val() === "") {
+        restBetweenReps.val(0)
+    }
     restBetweenReps.val(parseInt(restBetweenReps.val()) + 1);
 }
 
@@ -96,6 +102,9 @@ function minusSets() {
 
 // add 1 set to the set input
 function plusSets() {
+    if (setTotal.val() === "") {
+        setTotal.val(0)
+    }
     setTotal.val(parseInt(setTotal.val()) + 1);
 }
 
@@ -108,6 +117,9 @@ function minusBreak() {
 
 // add 1 second to the break input
 function plusBreak() {
+    if (restBetweenSets.val() === "") {
+        restBetweenSets.val(0)
+    }
     restBetweenSets.val(parseInt(restBetweenSets.val()) + 1);
 }
 
@@ -585,20 +597,11 @@ function saveLastInputs() {
 
 function loadLastInputs() {
     var saveObject = JSON.parse(localStorage.getItem("lastInputs"));
-    repTotal.val(saveObject.reps);
-    restBetweenReps.val(saveObject.rest);
-    setTotal.val(saveObject.sets);
-    restBetweenSets.val(saveObject.break);
-}
-
-function setInputs() {
-    if (localStorage.length === 0) {
-        repTotal.val(0);
-        restBetweenReps.val(0);
-        setTotal.val(0);
-        restBetweenSets.val(0);
-    } else {
-        loadLastInputs();
+    if (saveObject != null) {
+        repTotal.val(saveObject.reps);
+        restBetweenReps.val(saveObject.rest);
+        setTotal.val(saveObject.sets);
+        restBetweenSets.val(saveObject.break);
     }
 }
 
@@ -656,4 +659,4 @@ const requestWakeLock = async() => {
 
 requestWakeLock();
 
-setInputs();
+loadLastInputs();
