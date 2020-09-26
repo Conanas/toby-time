@@ -118,7 +118,7 @@ button {
     border: 1px solid black;
 }
 
-#load-modal-body {
+.modal-body {
     background-color: var(--load-modal-background);
 }
 
