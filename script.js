@@ -525,7 +525,7 @@ function showLocalStorageList() {
     if (localStorage.length === 0) {
         $("#load-form").text("There are no saved presets");
     } else {
-        for (var i = 0; i < localStorage.length; i++) {
+        for (var i = localStorage.length - 1; i >= 0; i--) {
             var key = localStorage.key(i);
             if (key != "lastInputs") {
                 $("#load-form").prepend(
