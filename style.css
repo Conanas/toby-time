@@ -51,6 +51,10 @@ header h1 {
     padding: 0px 6px 0 0;
 }
 
+.inputs {
+    text-align: center;
+}
+
 .input-form {
     font-size: 1.5em;
     text-align: center;
@@ -112,6 +116,8 @@ button {
     padding: 0.5em 1em;
     border: 1px solid black;
 }
+
+.save-button {}
 
 .timer-buttons {}
 
