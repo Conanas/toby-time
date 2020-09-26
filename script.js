@@ -17,6 +17,7 @@ var timerSection = $("#timerSection");
 
 // buttons
 var saveButton = $("#save-button");
+var loadButton = $("#load-button");
 var startTimerButton = $("#startTimer");
 var startBreakTimerButton = $("#startBreakTimer");
 var pauseTimerButton = $("#pauseTimer");
@@ -518,12 +519,50 @@ function closeFullscreen() {
     fullScreenButton.show();
 }
 
+function updateLoadButton(event) {
+    event.preventDefault();
+    $("#load-modal-button").attr("value", this.value);
+}
+
+function showLocalStorageList() {
+    if (localStorage.length === 0) {
+        $("#load-form").text("There are no saved presets");
+    } else {
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            if (key != "lastInputs") {
+                $("#load-form").prepend(
+                    `<input type="radio" class="load-radio" id="${key}" name="save" value="${key}">` +
+                    `<label for="${key}" class="load-radio-label">${key}</label><br>`
+                );
+            }
+        }
+        $(".load-radio").change(updateLoadButton);
+    }
+}
+
+function showLoadModal() {
+    $("#load-form input").remove();
+    $("#load-form label").remove();
+    $("#load-form br").remove();
+    showLocalStorageList();
+    $('#load-modal').modal('show');
+}
+
+function loadInputs(event) {
+    event.preventDefault();
+    var loadObject = JSON.parse(localStorage.getItem(event.target.value));
+    repTotal.val(loadObject.reps);
+    restBetweenReps.val(loadObject.rest);
+    setTotal.val(loadObject.sets);
+    restBetweenSets.val(loadObject.break);
+}
+
 function showSaveModal() {
     $("#exampleModalLabel").text("Save");
     $("#toby-image").hide();
     $("#modal-form").show();
     $('#exampleModal').modal('show');
-    $("#modal-save-button").on("click", saveInputs);
 }
 
 function saveInputs(event) {
@@ -586,6 +625,9 @@ startBreakTimerButton.on("click", startBreakTimer);
 fullScreenButton.on("click", openFullscreen);
 closeFullScreenButton.on("click", closeFullscreen);
 saveButton.on("click", showSaveModal);
+loadButton.on("click", showLoadModal);
+$("#load-modal-button").on("click", loadInputs);
+$("#modal-save-button").on("click", saveInputs);
 
 // on page load hide time, reps and sets displays
 // hide pause, stop and showToby buttons
