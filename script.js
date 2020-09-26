@@ -538,6 +538,7 @@ function startTimer() {
         // if first rep 
         hideInputs();
         showTimerDisplayElements();
+        saveLastInputs();
         firstRep = false;
         setsElapsed++;
 
@@ -597,6 +598,35 @@ function closeFullscreen() {
     showFullScreenButton();
 }
 
+function saveLastInputs() {
+    var saveObject = {
+        reps: repTotal.value,
+        rest: restBetweenReps.value,
+        sets: setTotal.value,
+        break: restBetweenSets.value
+    }
+    localStorage.setItem("lastInputs", JSON.stringify(saveObject));
+}
+
+function loadLastInputs() {
+    var saveObject = JSON.parse(localStorage.getItem("lastInputs"));
+    repTotal.value = saveObject.reps;
+    restBetweenReps.value = saveObject.rest;
+    setTotal.value = saveObject.sets;
+    restBetweenSets.value = saveObject.break;
+}
+
+function setInputs() {
+    if (localStorage.length === 0) {
+        repTotal.value = 0;
+        restBetweenReps.value = 0;
+        setTotal.value = 0;
+        restBetweenSets.value = 0;
+    } else {
+        loadLastInputs();
+    }
+}
+
 // show inputs
 showInputs();
 
@@ -646,3 +676,5 @@ const requestWakeLock = async() => {
 }
 
 requestWakeLock();
+
+setInputs();
