@@ -1,26 +1,26 @@
 // labels for reps, sets and totals
-var inputs = document.querySelector(".inputs");
+var inputs = $(".inputs");
 
 // reps, sets and rests inputs
-var repTotal = document.getElementById("repTotal");
-var restBetweenReps = document.getElementById("restBetweenReps");
-var setTotal = document.getElementById("setTotal");
-var restBetweenSets = document.getElementById("restBetweenSets");
+var repTotal = $("#repTotal");
+var restBetweenReps = $("#restBetweenReps");
+var setTotal = $("#setTotal");
+var restBetweenSets = $("#restBetweenSets");
 
 // reps, sets and timer display
-var repsDisplay = document.getElementById("repsDisplay");
-var repsDisplaySpan = document.getElementById("repsDisplaySpan");
-var setsDisplay = document.getElementById("setsDisplay");
-var setsDisplaySpan = document.getElementById("setsDisplaySpan");
-var timeDisplay = document.getElementById("timeDisplay");
-var timerSection = document.getElementById("timerSection");
+var repsDisplay = $("#repsDisplay");
+var repsDisplaySpan = $("#repsDisplaySpan");
+var setsDisplay = $("#setsDisplay");
+var setsDisplaySpan = $("#setsDisplaySpan");
+var timeDisplay = $("#timeDisplay");
+var timerSection = $("#timerSection");
 
 // buttons
-var startTimerButton = document.getElementById("startTimer");
-var startBreakTimerButton = document.getElementById("startBreakTimer");
-var pauseTimerButton = document.getElementById("pauseTimer");
-var resumeTimerButton = document.getElementById("resumeTimer");
-var stopTimerButton = document.getElementById("stopTimer");
+var startTimerButton = $("#startTimer");
+var startBreakTimerButton = $("#startBreakTimer");
+var pauseTimerButton = $("#pauseTimer");
+var resumeTimerButton = $("#resumeTimer");
+var stopTimerButton = $("#stopTimer");
 var fullScreenButton = $("#full-screen");
 var closeFullScreenButton = $("#close-full-screen");
 
@@ -63,154 +63,72 @@ function sound(src) {
 
 // minus 1 rep from the rep input
 function minusReps() {
-    if (repTotal.value > 1) {
-        repTotal.value -= 1;
+    if (repTotal.val() > 1) {
+        repTotal.val(repTotal.val() - 1);
     }
 }
 
 // add 1 rep to the rep input
 function plusReps() {
-    repTotal.value = parseInt(repTotal.value) + 1;
+    repTotal.val(parseInt(repTotal.val()) + 1);
 }
 
 // minus 1 second from the rest input
 function minusRest() {
-    if (restBetweenReps.value > 1) {
-        restBetweenReps.value -= 1;
+    if (restBetweenReps.val() > 1) {
+        restBetweenReps.val(restBetweenReps.val() - 1);
     }
 }
 
 // add 1 second to the rest input
 function plusRest() {
-    restBetweenReps.value = parseInt(restBetweenReps.value) + 1;
+    restBetweenReps.val(parseInt(restBetweenReps.val()) + 1);
 }
 
 // minus 1 set from the set input
 function minusSets() {
-    if (setTotal.value > 1) {
-        setTotal.value -= 1;
+    if (setTotal.val() > 1) {
+        setTotal.val(setTotal.val() - 1);
     }
 }
 
 // add 1 set to the set input
 function plusSets() {
-    setTotal.value = parseInt(setTotal.value) + 1;
+    setTotal.val(parseInt(setTotal.val()) + 1);
 }
 
 // minus 1 second from the break input
 function minusBreak() {
-    if (restBetweenSets.value > 1) {
-        restBetweenSets.value -= 1;
+    if (restBetweenSets.val() > 1) {
+        restBetweenSets.val(restBetweenSets.val() - 1);
     }
 }
 
 // add 1 second to the break input
 function plusBreak() {
-    restBetweenSets.value = parseInt(restBetweenSets.value) + 1;
-}
-
-// input labels and boxes hide/show functions
-
-// hide labels and boxes
-function hideInputs() {
-    inputs.setAttribute("style", "display: none;");
-}
-
-// show labels and boxes and add event listeners to plus and minus boxes
-function showInputs() {
-    inputs.setAttribute("style", "display: inline block");
+    restBetweenSets.val(parseInt(restBetweenSets.val()) + 1);
 }
 
 // hide timer display elements
 function hideTimerDisplayElements() {
-    repsDisplay.setAttribute("style", "display: none;");
-    setsDisplay.setAttribute("style", "display: none;");
-    timeDisplay.setAttribute("style", "display: none;");
+    repsDisplay.hide();
+    setsDisplay.hide();
+    timeDisplay.hide();
 }
 
 // show timer display elements
 function showTimerDisplayElements() {
-    repsDisplay.setAttribute("style", "display: inline block;");
-    setsDisplay.setAttribute("style", "display: inline block;");
-    timeDisplay.setAttribute("style", "display: inline block;");
-}
-
-// display the pause button and add click event listener
-function displayPauseButton() {
-    pauseTimerButton.setAttribute("style", "display: inline block;");
-}
-
-// display the resume button and add click event listener
-function displayResumeButton() {
-    resumeTimerButton.setAttribute("style", "display: inline block;");
-}
-
-// display the stop button and add click event listener
-function displayStopButton() {
-    stopTimerButton.setAttribute("style", "display: inline block;");
-}
-
-// display start button and add click event listener
-function displayStartButton() {
-    startTimerButton.setAttribute("style", "display: inline block;");
-}
-
-// show start break button and add click event listener
-function showStartBreakTimerButton() {
-    startBreakTimerButton.setAttribute("style", "display: inline block;");
-}
-
-// show full screen button
-function showFullScreenButton() {
-    fullScreenButton.attr("style", "display: inline block;");
-}
-
-// show close full screen button
-function showCloseFullScreenButton() {
-    closeFullScreenButton.attr("style", "display: inline block;");
-}
-
-// hide pause button
-function hidePauseButton() {
-    pauseTimerButton.setAttribute("style", "display: none;");
-}
-
-// hide resume button
-function hideResumeButton() {
-    resumeTimerButton.setAttribute("style", "display: none;");
-}
-
-// hide stop button
-function hideStopButton() {
-    stopTimerButton.setAttribute("style", "display: none;");
-}
-
-// hide start button
-function hideStartButton() {
-    startTimerButton.setAttribute("style", "display: none;");
-}
-
-// hide start break button
-function hideStartBreakTimerButton() {
-    startBreakTimerButton.setAttribute("style", "display: none;");
-}
-
-// hide full screen button
-function hideFullScreenButton() {
-    fullScreenButton.attr("style", "display: none;");
-}
-
-// hide close full screen button
-function hideCloseFullScreenButton() {
-    closeFullScreenButton.attr("style", "display: none;");
+    repsDisplay.show();
+    setsDisplay.show();
+    timeDisplay.show();
 }
 
 // update time display for rest and break time
 function updateTimeDisplay() {
     if (breakMode) {
-        timeDisplay.textContent = `${restBetweenSets.value - breakTimeElapsed}`;
+        timeDisplay.text(`${restBetweenSets.val() - breakTimeElapsed}`);
     } else {
-        timeDisplay.textContent = `${restBetweenReps.value - timeElapsed}`;
+        timeDisplay.text(`${restBetweenReps.val() - timeElapsed}`);
     }
 }
 
@@ -226,11 +144,11 @@ function stopTimer() {
     breakTimeElapsed = 0;
 
     // displays the start button
-    displayStartButton();
+    startTimerButton.show();
 
     // hides the pause and stop button
-    hidePauseButton();
-    hideStopButton();
+    pauseTimerButton.hide();
+    stopTimerButton.hide();
 
 }
 
@@ -245,9 +163,9 @@ function pauseTimer() {
         clearInterval(interval);
     }
 
-    displayResumeButton();
-    hidePauseButton();
-    hideStopButton();
+    resumeTimerButton.show();
+    pauseTimerButton.hide();
+    stopTimerButton.hide();
 
 }
 
@@ -259,9 +177,9 @@ function resumeTimer() {
     } else {
         startRestInterval();
     }
-    hideResumeButton();
-    displayPauseButton();
-    displayStopButton();
+    resumeTimerButton.hide();
+    pauseTimerButton.show();
+    stopTimerButton.show();
 
 }
 
@@ -281,7 +199,7 @@ function stopTimerButtonClicked() {
     hideTimerDisplayElements();
 
     // show inputs
-    showInputs();
+    inputs.show();
 
     // reset reps and sets
     repsElapsed = 0;
@@ -295,22 +213,22 @@ function stopTimerButtonClicked() {
 function updateRepsDisplay() {
 
     // if the reps elapsed is greater than or equal to the rep total input
-    if (repsElapsed >= repTotal.value) {
+    if (repsElapsed >= repTotal.val()) {
 
         // reset the reps and display reps remaining to 0
         repsElapsed = 0;
-        repsDisplaySpan.textContent = 0;
+        repsDisplaySpan.text(0);
 
     } else {
 
         // update the reps to display the rep total input - reps elapsed
-        repsDisplaySpan.textContent = `${repTotal.value - repsElapsed}`;
+        repsDisplaySpan.text(`${repTotal.val() - repsElapsed}`);
     }
 }
 
 // updates the sets left display
 function updateSetsDisplay() {
-    setsDisplaySpan.textContent = `${setTotal.value - setsElapsed}`
+    setsDisplaySpan.text(`${setTotal.val() - setsElapsed}`);
 }
 
 // show me Toby function
@@ -331,12 +249,12 @@ function showMeToby() {
 function showOnStartButtons() {
 
     // hide start button
-    hideStartButton();
-    hideStartBreakTimerButton();
+    startTimerButton.hide();
+    startBreakTimerButton.hide();
 
     // show pause and stop buttons
-    displayPauseButton();
-    displayStopButton();
+    pauseTimerButton.show();
+    stopTimerButton.show();
 }
 
 // check inputs for validity
@@ -346,7 +264,7 @@ function checkInputs() {
     if (inputsValid === false) {
 
         // check reps
-        if (repTotal.value === "" || repTotal.value == 0) {
+        if (repTotal.val() === "" || repTotal.val() == 0) {
 
             // if no reps then go back to start and alert
             toastBody.text("Please enter reps")
@@ -354,7 +272,7 @@ function checkInputs() {
         } else
 
         // check rest time
-        if (restBetweenReps.value === "" || restBetweenReps.value == 0) {
+        if (restBetweenReps.val() === "" || restBetweenReps.val() == 0) {
 
             // if no rest then go back to start and alert
             toastBody.text("Please enter rest time")
@@ -363,7 +281,7 @@ function checkInputs() {
         } else
 
         // check sets
-        if (setTotal.value === "" || setTotal.value == 0) {
+        if (setTotal.val() === "" || setTotal.val() == 0) {
 
             // if no sets then assume 1 set
             toastBody.text("Please enter sets")
@@ -372,7 +290,7 @@ function checkInputs() {
         } else
 
         // check break time
-        if (restBetweenSets.value === "" || restBetweenSets.value == 0) {
+        if (restBetweenSets.val() === "" || restBetweenSets.val() == 0) {
 
             // if there is more than 1 set then there needs to be a break
             // if no break then go back to start and alert
@@ -396,11 +314,11 @@ function checkInputs() {
 
 function checkToPlaySound() {
     if (breakMode) {
-        if (breakTimeElapsed == restBetweenSets.value - 4) {
+        if (breakTimeElapsed == restBetweenSets.val() - 4) {
             mySound.play();
         }
     } else {
-        if (timeElapsed == restBetweenReps.value - 4) {
+        if (timeElapsed == restBetweenReps.val() - 4) {
             mySound.play();
         }
     }
@@ -416,23 +334,23 @@ function startRestInterval() {
         checkToPlaySound();
 
         // check if rep timer has finished
-        if (timeElapsed == restBetweenReps.value) {
+        if (timeElapsed == restBetweenReps.val()) {
 
             // when rep timer has finished
             stopTimer();
 
             // check if this is the end of set/end of reps
-            if (repsElapsed + 1 == repTotal.value) {
+            if (repsElapsed + 1 == repTotal.val()) {
 
                 // on last rep
                 repsElapsed++;
 
                 // check if there are more sets to do
-                if (setsElapsed < setTotal.value) {
+                if (setsElapsed < setTotal.val()) {
 
                     // if more sets to do
-                    hideStartButton();
-                    showStartBreakTimerButton();
+                    startTimerButton.hide();
+                    startBreakTimerButton.show();
                     updateRepsDisplay();
 
                 } else {
@@ -446,7 +364,7 @@ function startRestInterval() {
                     setsElapsed = 0;
                     repsElapsed = 0;
                     hideTimerDisplayElements();
-                    showInputs();
+                    inputs.show();
                     showMeToby();
                     inputsValid = false;
                     firstRep = true;
@@ -476,7 +394,7 @@ function startBreakInterval() {
         checkToPlaySound();
 
         // check if break has finished
-        if (breakTimeElapsed == restBetweenSets.value) {
+        if (breakTimeElapsed == restBetweenSets.val()) {
 
             // when break timer finishes
             breakMode = false;
@@ -485,18 +403,18 @@ function startBreakInterval() {
             breakTimeElapsed = 0;
             setsElapsed++;
             updateSetsDisplay();
-            hideStartBreakTimerButton();
+            startBreakTimerButton.hide();
             repsElapsed = 0;
             updateRepsDisplay();
-            displayStartButton();
-            hidePauseButton();
-            hideStopButton();
+            startTimerButton.show();
+            pauseTimerButton.hide();
+            stopTimerButton.hide();
 
         } else {
 
             // break timer has not finished
             breakTimeElapsed++;
-            timeDisplay.textContent = `${restBetweenSets.value - breakTimeElapsed}`;
+            timeDisplay.text(`${restBetweenSets.val() - breakTimeElapsed}`);
 
         }
 
@@ -513,14 +431,14 @@ function startBreakTimer() {
     updateTimeDisplay();
 
     // show pause and stop buttons
-    hideStartBreakTimerButton();
-    displayPauseButton();
-    displayStopButton();
+    startBreakTimerButton.hide();
+    pauseTimerButton.show();
+    stopTimerButton.show();
 
     // show sleeping toby modal
     // showSleepingToby();
 
-    if (timeDisplay.textContent === "3") {
+    if (timeDisplay.text() === "3") {
         mySound.play();
     }
 
@@ -536,7 +454,7 @@ function startTimer() {
     if (firstRep) {
 
         // if first rep 
-        hideInputs();
+        inputs.hide();
         showTimerDisplayElements();
         saveLastInputs();
         firstRep = false;
@@ -555,7 +473,7 @@ function startTimer() {
     updateRepsDisplay();
     updateSetsDisplay();
 
-    if (timeDisplay.textContent === "3") {
+    if (timeDisplay.text() === "3") {
         mySound.play();
     }
 
@@ -579,8 +497,8 @@ function openFullscreen() {
     } else if (elem.msRequestFullscreen) { /* IE/Edge */
         elem.msRequestFullscreen();
     }
-    hideFullScreenButton();
-    showCloseFullScreenButton();
+    fullScreenButton.hide();
+    closeFullScreenButton.show();
 }
 
 /* Close fullscreen */
@@ -594,41 +512,41 @@ function closeFullscreen() {
     } else if (document.msExitFullscreen) { /* IE/Edge */
         document.msExitFullscreen();
     }
-    hideCloseFullScreenButton();
-    showFullScreenButton();
+    closeFullScreenButton.hide();
+    fullscreenButton.show();
 }
 
 function saveLastInputs() {
     var saveObject = {
-        reps: repTotal.value,
-        rest: restBetweenReps.value,
-        sets: setTotal.value,
-        break: restBetweenSets.value
+        reps: repTotal.val(),
+        rest: restBetweenReps.val(),
+        sets: setTotal.val(),
+        break: restBetweenSets.val()
     }
     localStorage.setItem("lastInputs", JSON.stringify(saveObject));
 }
 
 function loadLastInputs() {
     var saveObject = JSON.parse(localStorage.getItem("lastInputs"));
-    repTotal.value = saveObject.reps;
-    restBetweenReps.value = saveObject.rest;
-    setTotal.value = saveObject.sets;
-    restBetweenSets.value = saveObject.break;
+    repTotal.val(saveObject.reps);
+    restBetweenReps.val(saveObject.rest);
+    setTotal.val(saveObject.sets);
+    restBetweenSets.val(saveObject.break);
 }
 
 function setInputs() {
     if (localStorage.length === 0) {
-        repTotal.value = 0;
-        restBetweenReps.value = 0;
-        setTotal.value = 0;
-        restBetweenSets.value = 0;
+        repTotal.val(0);
+        restBetweenReps.val(0);
+        setTotal.val(0);
+        restBetweenSets.val(0);
     } else {
         loadLastInputs();
     }
 }
 
 // show inputs
-showInputs();
+inputs.show();
 
 $("#minus-reps").on("click", minusReps);
 $("#plus-reps").on("click", plusReps);
@@ -638,28 +556,28 @@ $("#minus-sets").on("click", minusSets);
 $("#plus-sets").on("click", plusSets);
 $("#minus-break").on("click", minusBreak);
 $("#plus-break").on("click", plusBreak);
-pauseTimerButton.addEventListener("click", pauseTimer);
-resumeTimerButton.addEventListener("click", resumeTimer);
-stopTimerButton.addEventListener("click", stopTimerButtonClicked);
-startTimerButton.addEventListener("click", checkInputs);
-startBreakTimerButton.addEventListener("click", startBreakTimer);
+pauseTimerButton.on("click", pauseTimer);
+resumeTimerButton.on("click", resumeTimer);
+stopTimerButton.on("click", stopTimerButtonClicked);
+startTimerButton.on("click", checkInputs);
+startBreakTimerButton.on("click", startBreakTimer);
 fullScreenButton.on("click", openFullscreen);
 closeFullScreenButton.on("click", closeFullscreen);
 
 // on page load hide time, reps and sets displays
 // hide pause, stop and showToby buttons
-hideStartBreakTimerButton();
-hidePauseButton();
-hideResumeButton();
-hideStopButton();
-hideCloseFullScreenButton();
+startBreakTimerButton.hide();
+pauseTimerButton.hide();
+resumeTimerButton.hide();
+stopTimerButton.hide();
+closeFullScreenButton.hide();
 
 // hide timer display elements
 hideTimerDisplayElements();
 
 // start button displayed on startup and click event listener added
-displayStartButton();
-showFullScreenButton();
+startTimerButton.show();
+fullScreenButton.show();
 
 // screen wakelock request
 // stop screen from sleeping
