@@ -23,6 +23,7 @@
     --button-font: var(--font-raleway);
     --button-font-weight: 300;
     --modal-header-background: var(--grey-blue-30);
+    --load-modal-background: var(--teal-25);
 }
 
 body {
@@ -117,11 +118,20 @@ button {
     border: 1px solid black;
 }
 
+#load-modal-body {
+    background-color: var(--load-modal-background);
+}
+
+.load-radio-label {
+    padding-left: 0.5em;
+}
+
 .save-load-button {}
 
 .timer-buttons {}
 
-.modal-header {
+.modal-header,
+.modal-footer {
     background-color: var(--modal-header-background);
 }
 
