@@ -235,9 +235,6 @@ function updateSetsDisplay() {
 
 // show me Toby function
 function showMeToby() {
-    $("#exampleModalLabel").text("You're Amazing Mama!");
-    $("#toby-image").show();
-    $("#modal-form").hide();
     $('#exampleModal').modal('show');
 }
 
@@ -559,10 +556,7 @@ function loadInputs(event) {
 }
 
 function showSaveModal() {
-    $("#exampleModalLabel").text("Save");
-    $("#toby-image").hide();
-    $("#modal-form").show();
-    $('#exampleModal').modal('show');
+    $('#save-modal').modal('show');
 }
 
 function saveInputs(event) {
