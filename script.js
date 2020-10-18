@@ -198,13 +198,6 @@ function showMeToby() {
     $('#exampleModal').modal('show');
 }
 
-// // show sleeping Toby
-// function showSleepingToby() {
-
-//     // show the sleeping toby modal
-//     $('#sleepingModal').modal('show');
-// }
-
 // show the buttons on start of application
 function showOnStartButtons() {
 
