@@ -8,7 +8,7 @@ const requestWakeLock = async() => {
     } catch (err) {
         // the wake lock request fails - usually system related, such low as battery
 
-        alert(`${err.name}, ${err.message}`);
+        console.log(`${err.name}, ${err.message}`);
     }
 }
 
