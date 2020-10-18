@@ -25,6 +25,10 @@ var resumeTimerButton = $("#resumeTimer");
 var stopTimerButton = $("#stopTimer");
 var fullScreenButton = $("#full-screen");
 var closeFullScreenButton = $("#close-full-screen");
+var nextRepButton = $("#next-rep-button");
+var nextSetButton = $("#next-set-button");
+var prevRepButton = $("#prev-rep-button");
+var prevSetButton = $("#prev-set-button");
 
 // toast
 var toast = $(".toast");
@@ -153,6 +157,12 @@ function stopTimerButtonClicked() {
     // show inputs
     inputs.show();
 
+    // hide next, prev, rep, set buttons
+    nextRepButton.hide();
+    nextSetButton.hide();
+    prevRepButton.hide();
+    prevSetButton.hide();
+
     // reset reps and sets
     repsElapsed = 0;
     setsElapsed = 0;
@@ -206,6 +216,37 @@ function showOnStartButtons() {
     pauseTimerButton.show();
     stopTimerButton.show();
 }
+
+// next, prev, rep, set functions
+
+function nextRep() {
+    if (repsElapsed != repTotal.val() - 1) {
+        repsElapsed += 1;
+        updateRepsDisplay();
+    }
+}
+
+function nextSet() {
+    if (setsElapsed != setTotal.val() - 1) {
+        setsElapsed += 1;
+        updateSetsDisplay();
+    }
+}
+
+function prevRep() {
+    if (repsElapsed > 0) {
+        repsElapsed -= 1;
+        updateRepsDisplay();
+    }
+}
+
+function prevSet() {
+    if (setsElapsed > 0) {
+        setsElapsed -= 1;
+        updateSetsDisplay();
+    }
+}
+
 
 // check inputs for validity
 function checkInputs() {
@@ -311,6 +352,11 @@ function startRestInterval() {
 
                     // else go back to start screen
 
+                    nextRepButton.hide();
+                    nextSetButton.hide();
+                    prevRepButton.hide();
+                    prevSetButton.hide();
+
                     setsElapsed = 0;
                     repsElapsed = 0;
                     hideTimerDisplayElements();
@@ -399,6 +445,11 @@ function startBreakTimer() {
 
 // start the timer
 function startTimer() {
+
+    nextRepButton.show();
+    nextSetButton.show();
+    prevRepButton.show();
+    prevSetButton.show();
 
     // check if first rep
     if (firstRep) {
@@ -558,6 +609,12 @@ loadButton.on("click", showLoadModal);
 $("#load-modal-button").on("click", loadInputs);
 $("#modal-save-button").on("click", saveInputs);
 
+// next, prev, rep, set button click event listeners
+nextRepButton.on("click", nextRep);
+nextSetButton.on("click", nextSet);
+prevRepButton.on("click", prevRep);
+prevSetButton.on("click", prevSet);
+
 // on page load hide time, reps and sets displays
 // hide pause, stop and showToby buttons
 startBreakTimerButton.hide();
@@ -565,6 +622,12 @@ pauseTimerButton.hide();
 resumeTimerButton.hide();
 stopTimerButton.hide();
 closeFullScreenButton.hide();
+
+// next, prev, rep, set button hides
+nextRepButton.hide();
+nextSetButton.hide();
+prevRepButton.hide();
+prevSetButton.hide();
 
 // hide timer display elements
 hideTimerDisplayElements();
