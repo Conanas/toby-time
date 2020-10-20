@@ -22,6 +22,7 @@
     --header-font-weight: 300;
     --button-font: var(--font-raleway);
     --button-font-weight: 300;
+    --timer-buttons-color: var(--grey-85);
     --modal-header-background: var(--grey-blue-30);
     --load-modal-background: var(--teal-25);
 }
@@ -128,7 +129,13 @@ button {
 
 .save-load-button {}
 
-.timer-buttons {}
+.timer-buttons {
+    background-color: transparent;
+    border: none;
+    color: var(--timer-buttons-color);
+    font-size: 32px;
+    padding: 16px !important;
+}
 
 .modal-header,
 .modal-footer {
