@@ -104,8 +104,6 @@ function stopTimer() {
 
     // hides the pause and stop button
     pauseTimerButton.hide();
-    stopTimerButton.hide();
-
 }
 
 // pause the timer
@@ -121,8 +119,6 @@ function pauseTimer() {
 
     resumeTimerButton.show();
     pauseTimerButton.hide();
-    stopTimerButton.hide();
-
 }
 
 // resume the timer
@@ -135,8 +131,6 @@ function resumeTimer() {
     }
     resumeTimerButton.hide();
     pauseTimerButton.show();
-    stopTimerButton.show();
-
 }
 
 // stop timer button was pressed
@@ -153,6 +147,9 @@ function stopTimerButtonClicked() {
 
     // hide timer display elements
     hideTimerDisplayElements();
+    stopTimerButton.hide();
+    resumeTimerButton.hide();
+    startBreakTimerButton.hide();
 
     // show inputs
     inputs.show();
@@ -207,7 +204,6 @@ function showOnStartButtons() {
 
     // show pause and stop buttons
     pauseTimerButton.show();
-    stopTimerButton.show();
 }
 
 // next, prev, rep, set functions
@@ -326,6 +322,7 @@ function startRestInterval() {
                     hideTimerDisplayElements();
                     inputs.show();
                     showMeToby();
+                    stopTimerButton.hide();
                     inputsValid = false;
                     firstRep = true;
                 }
@@ -358,7 +355,6 @@ function startBreakInterval() {
             updateRepsDisplay();
             startTimerButton.show();
             pauseTimerButton.hide();
-            stopTimerButton.hide();
         } else {
             // break timer has not finished
             breakTimeElapsed++;
@@ -376,7 +372,6 @@ function startBreakTimer() {
     // show pause and stop buttons
     startBreakTimerButton.hide();
     pauseTimerButton.show();
-    stopTimerButton.show();
     // show sleeping toby modal
     // showSleepingToby();
     if (timeDisplay.text() === "3") {
@@ -399,6 +394,7 @@ function startTimer() {
 
         // if first rep 
         inputs.hide();
+        stopTimerButton.show();
         showTimerDisplayElements();
         saveLastInputs();
         firstRep = false;
