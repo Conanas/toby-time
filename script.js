@@ -370,7 +370,7 @@ function startWorkout() {
         setsElapsed++;
     }
 
-    // on start of rest timer
+    // on start of workout
 
     // do first rep message
 
