@@ -172,8 +172,8 @@ function updateSetsDisplay() {
 }
 
 // next, prev, rep, set functions
-
 function nextRep() {
+    stopTimer();
     if (repsElapsed != repTotal.val() - 1) {
         repsElapsed += 1;
         updateRepsDisplay();
@@ -181,13 +181,15 @@ function nextRep() {
 }
 
 function nextSet() {
-    if (setsElapsed != setTotal.val() - 1) {
+    stopTimer();
+    if (setsElapsed != setTotal.val()) {
         setsElapsed += 1;
         updateSetsDisplay();
     }
 }
 
 function prevRep() {
+    stopTimer();
     if (repsElapsed > 0) {
         repsElapsed -= 1;
         updateRepsDisplay();
@@ -195,12 +197,12 @@ function prevRep() {
 }
 
 function prevSet() {
+    stopTimer();
     if (setsElapsed > 0) {
         setsElapsed -= 1;
         updateSetsDisplay();
     }
 }
-
 
 // check inputs for validity
 function checkInputs() {
