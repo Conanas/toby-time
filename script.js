@@ -1,6 +1,9 @@
 // labels for reps, sets and totals
 var inputs = $(".inputs");
 
+// body for background changes
+var bodyBackground = $("body");
+
 // reps, sets and rests inputs
 var repTotal = $("#repTotal");
 var restBetweenReps = $("#restBetweenReps");
@@ -29,6 +32,9 @@ var nextRepButton = $("#next-rep-button");
 var nextSetButton = $("#next-set-button");
 var prevRepButton = $("#prev-rep-button");
 var prevSetButton = $("#prev-set-button");
+
+// modals
+var finishWorkoutModal = $('#finish-workout-modal');
 
 // toast
 var toast = $(".toast");
@@ -117,9 +123,9 @@ function pauseTimer() {
 // resume the timer
 function resumeTimer() {
     if (breakMode) {
-        startBreakInterval();
+        startBreakTimer();
     } else {
-        startRestInterval();
+        startRestTimer();
     }
     resumeTimerButton.hide();
     pauseTimerButton.show();
@@ -132,7 +138,7 @@ function stopTimerButtonClicked() {
     // check if breakMode
     if (breakMode) {
         breakMode = false;
-        $("body").css("background-color", "var(--body-background-rest)");
+        bodyBackground.css("background-color", "var(--body-background-rest)");
     }
     // hide timer display elements
     hideTimerDisplayElements();
@@ -206,39 +212,28 @@ function prevSet() {
 
 // check inputs for validity
 function checkInputs() {
-    // check if inputs are valid
     if (inputsValid === false) {
-        // check reps
         if (repTotal.val() === "" || repTotal.val() == 0) {
-            // if no reps then go back to start and alert
             toastBody.text("Please enter reps")
             toast.toast('show');
         } else
-        // check rest time
         if (restBetweenReps.val() === "" || restBetweenReps.val() == 0) {
-            // if no rest then go back to start and alert
             toastBody.text("Please enter rest time")
             toast.toast('show');
         } else
-        // check sets
         if (setTotal.val() === "" || setTotal.val() == 0) {
-            // if no sets then assume 1 set
             toastBody.text("Please enter sets")
             toast.toast('show');
         } else
-        // check break time
         if (restBetweenSets.val() === "" || restBetweenSets.val() == 0) {
-            // if there is more than 1 set then there needs to be a break
-            // if no break then go back to start and alert
             toastBody.text("Please enter break time")
             toast.toast('show');
         } else {
-            // start timer if inputs are valid
             inputsValid = true;
-            startTimer();
+            startWorkout();
         }
     } else {
-        startTimer();
+        startWorkout();
     }
 }
 
@@ -254,8 +249,45 @@ function checkToPlaySound() {
     }
 }
 
+// check if reach the end of the sets or reps at the end of the rest interval
+function endSetRepCheck() {
+    if (repsElapsed + 1 == repTotal.val()) {
+        //
+        // on last rep
+        //
+        repsElapsed++;
+        // check if there are more sets to do
+        if (setsElapsed < setTotal.val()) {
+            // if more sets to do
+            startTimerButton.hide();
+            startBreakTimerButton.show();
+            updateRepsDisplay();
+        } else {
+            //
+            // no more sets to do
+            //
+            // do last reps message
+
+
+            // else go back to start screen
+            nextRepButton.hide();
+            nextSetButton.hide();
+            prevRepButton.hide();
+            prevSetButton.hide();
+            setsElapsed = 0;
+            repsElapsed = 0;
+            hideTimerDisplayElements();
+            inputs.show();
+            finishWorkoutModal.modal('show');
+            stopTimerButton.hide();
+            inputsValid = false;
+            firstRep = true;
+        }
+    }
+}
+
 // rest interval function
-function startRestInterval() {
+function startRestTimer() {
     // start rest timer
     interval = setInterval(function() {
         // check if 3 seconds left for sounds
@@ -265,35 +297,7 @@ function startRestInterval() {
             // when rep timer has finished
             stopTimer();
             // check if this is the end of set/end of reps
-            if (repsElapsed + 1 == repTotal.val()) {
-                // on last rep
-                repsElapsed++;
-                // check if there are more sets to do
-                if (setsElapsed < setTotal.val()) {
-                    // if more sets to do
-                    startTimerButton.hide();
-                    startBreakTimerButton.show();
-                    updateRepsDisplay();
-                } else {
-                    // no more sets to do
-                    // do last reps message
-
-
-                    // else go back to start screen
-                    nextRepButton.hide();
-                    nextSetButton.hide();
-                    prevRepButton.hide();
-                    prevSetButton.hide();
-                    setsElapsed = 0;
-                    repsElapsed = 0;
-                    hideTimerDisplayElements();
-                    inputs.show();
-                    $('#finish-workout-modal').modal('show');
-                    stopTimerButton.hide();
-                    inputsValid = false;
-                    firstRep = true;
-                }
-            }
+            endSetRepCheck();
         } else {
             // if rep timer has not finished
             timeElapsed++;
@@ -303,7 +307,7 @@ function startRestInterval() {
 }
 
 // break interval function
-function startBreakInterval() {
+function startBreakTimer() {
     // start break interval timer
     breakInterval = setInterval(function() {
         // check if 3 seconds left for sounds
@@ -312,7 +316,7 @@ function startBreakInterval() {
         if (breakTimeElapsed == restBetweenSets.val()) {
             // when break timer finishes
             breakMode = false;
-            $("body").css("background-color", "var(--body-background-rest)");
+            bodyBackground.css("background-color", "var(--body-background-rest)");
             clearInterval(breakInterval);
             breakTimeElapsed = 0;
             setsElapsed++;
@@ -330,26 +334,25 @@ function startBreakInterval() {
     }, 1000);
 }
 
-// start break timer
-function startBreakTimer() {
-    // at start of break timer
+// start break
+function startBreak() {
+    // at start of break
     breakMode = true;
-    $("body").css("background-color", "var(--body-background-break)");
+    bodyBackground.css("background-color", "var(--body-background-break)");
     updateTimeDisplay();
     // show pause and stop buttons
     startBreakTimerButton.hide();
     pauseTimerButton.show();
-    // show sleeping toby modal
-    // showSleepingToby();
+
     if (timeDisplay.text() === "3") {
         mySound.play();
     }
     // start break interval
-    startBreakInterval();
+    startBreakTimer();
 }
 
 // start the timer
-function startTimer() {
+function startWorkout() {
 
     nextRepButton.show();
     nextSetButton.show();
@@ -388,7 +391,7 @@ function startTimer() {
     }
 
     // start the rest interval
-    startRestInterval();
+    startRestTimer();
 }
 
 // show inputs
@@ -398,7 +401,7 @@ pauseTimerButton.on("click", pauseTimer);
 resumeTimerButton.on("click", resumeTimer);
 stopTimerButton.on("click", stopTimerButtonClicked);
 startTimerButton.on("click", checkInputs);
-startBreakTimerButton.on("click", startBreakTimer);
+startBreakTimerButton.on("click", startBreak);
 
 // next, prev, rep, set button click event listeners
 nextRepButton.on("click", nextRep);
