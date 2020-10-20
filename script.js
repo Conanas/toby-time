@@ -91,24 +91,18 @@ function updateTimeDisplay() {
 // stops the interval timer and goes back to input screen
 function stopTimer() {
 
-    // clears the interval
     clearInterval(interval);
     clearInterval(breakInterval);
 
-    // resets the time elapsed
     timeElapsed = 0;
     breakTimeElapsed = 0;
 
-    // displays the start button
     startTimerButton.show();
-
-    // hides the pause and stop button
     pauseTimerButton.hide();
 }
 
 // pause the timer
 function pauseTimer() {
-
     // stop the timers
     // check breakMode
     if (breakMode) {
@@ -116,14 +110,12 @@ function pauseTimer() {
     } else {
         clearInterval(interval);
     }
-
     resumeTimerButton.show();
     pauseTimerButton.hide();
 }
 
 // resume the timer
 function resumeTimer() {
-
     if (breakMode) {
         startBreakInterval();
     } else {
@@ -135,51 +127,40 @@ function resumeTimer() {
 
 // stop timer button was pressed
 function stopTimerButtonClicked() {
-
     // stop the timer
     stopTimer();
-
     // check if breakMode
     if (breakMode) {
         breakMode = false;
         $("body").css("background-color", "var(--body-background-rest)");
     }
-
     // hide timer display elements
     hideTimerDisplayElements();
     stopTimerButton.hide();
     resumeTimerButton.hide();
     startBreakTimerButton.hide();
-
     // show inputs
     inputs.show();
-
     // hide next, prev, rep, set buttons
     nextRepButton.hide();
     nextSetButton.hide();
     prevRepButton.hide();
     prevSetButton.hide();
-
     // reset reps and sets
     repsElapsed = 0;
     setsElapsed = 0;
     firstRep = true;
     inputsValid = false;
-
 }
 
 // updates the reps left display
 function updateRepsDisplay() {
-
     // if the reps elapsed is greater than or equal to the rep total input
     if (repsElapsed >= repTotal.val()) {
-
         // reset the reps and display reps remaining to 0
         repsElapsed = 0;
         repsDisplaySpan.text(0);
-
     } else {
-
         // update the reps to display the rep total input - reps elapsed
         repsDisplaySpan.text(`${repTotal.val() - repsElapsed}`);
     }
@@ -188,22 +169,6 @@ function updateRepsDisplay() {
 // updates the sets left display
 function updateSetsDisplay() {
     setsDisplaySpan.text(`${setTotal.val() - setsElapsed}`);
-}
-
-// show me Toby function
-function showMeToby() {
-    $('#exampleModal').modal('show');
-}
-
-// show the buttons on start of application
-function showOnStartButtons() {
-
-    // hide start button
-    startTimerButton.hide();
-    startBreakTimerButton.hide();
-
-    // show pause and stop buttons
-    pauseTimerButton.show();
 }
 
 // next, prev, rep, set functions
@@ -321,7 +286,7 @@ function startRestInterval() {
                     repsElapsed = 0;
                     hideTimerDisplayElements();
                     inputs.show();
-                    showMeToby();
+                    $('#finish-workout-modal').modal('show');
                     stopTimerButton.hide();
                     inputsValid = false;
                     firstRep = true;
@@ -391,7 +356,6 @@ function startTimer() {
 
     // check if first rep
     if (firstRep) {
-
         // if first rep 
         inputs.hide();
         stopTimerButton.show();
@@ -399,7 +363,6 @@ function startTimer() {
         saveLastInputs();
         firstRep = false;
         setsElapsed++;
-
     }
 
     // on start of rest timer
@@ -407,7 +370,12 @@ function startTimer() {
     // do first rep message
 
     // each time the start button is pressed
-    showOnStartButtons();
+    // hide start button
+    startTimerButton.hide();
+    startBreakTimerButton.hide();
+
+    // show pause and stop buttons
+    pauseTimerButton.show();
     updateTimeDisplay();
     repsElapsed++;
     updateRepsDisplay();
@@ -419,7 +387,6 @@ function startTimer() {
 
     // start the rest interval
     startRestInterval();
-
 }
 
 // show inputs
