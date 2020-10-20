@@ -137,6 +137,12 @@ button {
     padding: 16px !important;
 }
 
+#stopTimer {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+}
+
 .modal-header,
 .modal-footer {
     background-color: var(--modal-header-background);
