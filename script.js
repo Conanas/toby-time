@@ -243,57 +243,40 @@ function prevSet() {
 
 // check inputs for validity
 function checkInputs() {
-
     // check if inputs are valid
     if (inputsValid === false) {
-
         // check reps
         if (repTotal.val() === "" || repTotal.val() == 0) {
-
             // if no reps then go back to start and alert
             toastBody.text("Please enter reps")
             toast.toast('show');
         } else
-
         // check rest time
         if (restBetweenReps.val() === "" || restBetweenReps.val() == 0) {
-
             // if no rest then go back to start and alert
             toastBody.text("Please enter rest time")
             toast.toast('show');
-
         } else
-
         // check sets
         if (setTotal.val() === "" || setTotal.val() == 0) {
-
             // if no sets then assume 1 set
             toastBody.text("Please enter sets")
             toast.toast('show');
-
         } else
-
         // check break time
         if (restBetweenSets.val() === "" || restBetweenSets.val() == 0) {
-
             // if there is more than 1 set then there needs to be a break
             // if no break then go back to start and alert
             toastBody.text("Please enter break time")
             toast.toast('show');
-
         } else {
-
             // start timer if inputs are valid
             inputsValid = true;
             startTimer();
         }
-
     } else {
-
         startTimer();
-
     }
-
 }
 
 function checkToPlaySound() {
@@ -310,46 +293,34 @@ function checkToPlaySound() {
 
 // rest interval function
 function startRestInterval() {
-
     // start rest timer
     interval = setInterval(function() {
-
         // check if 3 seconds left for sounds
         checkToPlaySound();
-
         // check if rep timer has finished
         if (timeElapsed == restBetweenReps.val()) {
-
             // when rep timer has finished
             stopTimer();
-
             // check if this is the end of set/end of reps
             if (repsElapsed + 1 == repTotal.val()) {
-
                 // on last rep
                 repsElapsed++;
-
                 // check if there are more sets to do
                 if (setsElapsed < setTotal.val()) {
-
                     // if more sets to do
                     startTimerButton.hide();
                     startBreakTimerButton.show();
                     updateRepsDisplay();
-
                 } else {
-
                     // no more sets to do
                     // do last reps message
 
 
                     // else go back to start screen
-
                     nextRepButton.hide();
                     nextSetButton.hide();
                     prevRepButton.hide();
                     prevSetButton.hide();
-
                     setsElapsed = 0;
                     repsElapsed = 0;
                     hideTimerDisplayElements();
@@ -357,34 +328,24 @@ function startRestInterval() {
                     showMeToby();
                     inputsValid = false;
                     firstRep = true;
-
                 }
-
             }
-
         } else {
-
             // if rep timer has not finished
             timeElapsed++;
             updateTimeDisplay();
-
         }
     }, 1000);
-
 }
 
 // break interval function
 function startBreakInterval() {
-
     // start break interval timer
     breakInterval = setInterval(function() {
-
         // check if 3 seconds left for sounds
         checkToPlaySound();
-
         // check if break has finished
         if (breakTimeElapsed == restBetweenSets.val()) {
-
             // when break timer finishes
             breakMode = false;
             $("body").css("background-color", "var(--body-background-rest)");
@@ -398,42 +359,31 @@ function startBreakInterval() {
             startTimerButton.show();
             pauseTimerButton.hide();
             stopTimerButton.hide();
-
         } else {
-
             // break timer has not finished
             breakTimeElapsed++;
             timeDisplay.text(`${restBetweenSets.val() - breakTimeElapsed}`);
-
         }
-
     }, 1000);
-
 }
 
 // start break timer
 function startBreakTimer() {
-
     // at start of break timer
     breakMode = true;
     $("body").css("background-color", "var(--body-background-break)");
     updateTimeDisplay();
-
     // show pause and stop buttons
     startBreakTimerButton.hide();
     pauseTimerButton.show();
     stopTimerButton.show();
-
     // show sleeping toby modal
     // showSleepingToby();
-
     if (timeDisplay.text() === "3") {
         mySound.play();
     }
-
     // start break interval
     startBreakInterval();
-
 }
 
 // start the timer
@@ -474,40 +424,6 @@ function startTimer() {
     // start the rest interval
     startRestInterval();
 
-}
-
-// Full screen functions and variables
-/* Get the documentElement (<html>) to display the page in fullscreen */
-var elem = document.documentElement;
-
-/* View in fullscreen */
-function openFullscreen() {
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { /* Firefox */
-        elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-        elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE/Edge */
-        elem.msRequestFullscreen();
-    }
-    fullScreenButton.hide();
-    closeFullScreenButton.show();
-}
-
-/* Close fullscreen */
-function closeFullscreen() {
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { /* Firefox */
-        document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
-        document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE/Edge */
-        document.msExitFullscreen();
-    }
-    closeFullScreenButton.hide();
-    fullScreenButton.show();
 }
 
 function updateLoadButton(event) {
@@ -595,8 +511,6 @@ resumeTimerButton.on("click", resumeTimer);
 stopTimerButton.on("click", stopTimerButtonClicked);
 startTimerButton.on("click", checkInputs);
 startBreakTimerButton.on("click", startBreakTimer);
-fullScreenButton.on("click", openFullscreen);
-closeFullScreenButton.on("click", closeFullscreen);
 saveButton.on("click", showSaveModal);
 loadButton.on("click", showLoadModal);
 $("#load-modal-button").on("click", loadInputs);
