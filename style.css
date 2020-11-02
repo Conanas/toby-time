@@ -49,6 +49,7 @@ header h1 {
 .screen-size-button {
     background-color: transparent;
     border-color: transparent;
+    color: var(--timer-buttons-color);
     border: 0px;
     padding: 0px 6px 0 0;
 }
