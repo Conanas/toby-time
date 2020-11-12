@@ -354,10 +354,10 @@ function startBreak() {
 // start the timer
 function startWorkout() {
 
-    nextRepButton.show();
-    nextSetButton.show();
-    prevRepButton.show();
-    prevSetButton.show();
+    nextRepButton.hide();
+    nextSetButton.hide();
+    prevRepButton.hide();
+    prevSetButton.hide();
 
     // check if first rep
     if (firstRep) {
