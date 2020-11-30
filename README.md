@@ -22,12 +22,12 @@ https://conanas.github.io/toby-time/
 
 ###### Welcome Screen
 
-![welcome screen](assets\images\screenshots\welcome-screen.png "welcome screen")
+![welcome screen](./assets/images/screenshots/welcome-screen.png "welcome screen")
 
 ###### Countdown Screen
 
-![countdown screen](assets\images\screenshots\countdown-screen.png "countdown screen")
+![countdown screen](./assets/images/screenshots/countdown-screen.png "countdown screen")
 
 ###### Toby Screen
 
-![toby screen](assets\images\screenshots\toby-screen.png "toby screen")
+![toby screen](./assets/images/screenshots/toby-screen.png "toby screen")
