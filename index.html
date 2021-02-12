@@ -2,166 +2,174 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&family=Raleway:wght@300&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="icon" href="./assets/images/sky-boom-face.png">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <title>Toby Time</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400&family=Raleway:wght@300&family=Roboto+Condensed:wght@300;400&display=swap"
+    rel="stylesheet">
+  <link rel="icon" href="./assets/images/sky-boom-face.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>Toby Time</title>
 </head>
 
 <body>
-    <header class="container">
-        <div class="row no-gutters">
-            <div class="col d-flex justify-content-end">
-                <button id="full-screen" class="screen-size-button"><i class="fas fa-expand-alt"></i></button>
-                <button id="close-full-screen" class="screen-size-button"><i class="fas fa-compress-alt"></i></button>
-            </div>
-        </div>
-        <div class="row no-gutters">
-            <div class="col d-flex justify-content-center">
-                <h1>Toby Time</h1>
-            </div>
-            <!-- <div class="col-2 d-flex justify-content-end align-items-start">
+  <header class="container">
+    <div class="row no-gutters">
+      <div class="col d-flex justify-content-end">
+        <button id="full-screen" class="screen-size-button"><i class="fas fa-expand-alt"></i></button>
+        <button id="close-full-screen" class="screen-size-button"><i class="fas fa-compress-alt"></i></button>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col d-flex justify-content-center">
+        <h1>Toby Time</h1>
+      </div>
+      <!-- <div class="col-2 d-flex justify-content-end align-items-start">
                 
             </div> -->
+    </div>
+  </header>
+  <main class="container">
+    <div class="row">
+      <div class="col inputs">
+        <form class="input-form">
+
+          <hr>
+
+          <label for="repTotal" class="input-labels">Reps:</label>
+          <i class="far fa-minus-square" id="minus-reps"></i>
+          <input type="number" id="repTotal" class="input-inputs" name="repTotal" placeholder="0">
+          <i class="far fa-plus-square" id="plus-reps"></i><br>
+
+          <label for="restBetweenReps" class="input-labels">Rest:</label>
+          <i class="far fa-minus-square" id="minus-rest"></i>
+          <input type="number" id="restBetweenReps" class="input-inputs" name="restBetweenReps" placeholder="0">
+          <i class="far fa-plus-square" id="plus-rest"></i><br>
+
+          <hr>
+
+          <label for="setTotal" class="input-labels">Sets:</label>
+          <i class="far fa-minus-square" id="minus-sets"></i>
+          <input type="number" id="setTotal" class="input-inputs" name="setTotal" placeholder="0">
+          <i class="far fa-plus-square" id="plus-sets"></i><br>
+
+          <label for="restBetweenSets" class="input-labels">Break:</label>
+          <i class="far fa-minus-square" id="minus-break"></i>
+          <input type="number" id="restBetweenSets" class="input-inputs" name="restBetweenSets" placeholder="0">
+          <i class="far fa-plus-square" id="plus-break"></i><br>
+
+        </form>
+
+        <button class="save-load-button" id="load-button">Load</button>
+        <button class="save-load-button" id="save-button">Save</button>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <section id="timerSection">
+          <br>
+          <div id="repsDisplay">
+            <label for="repsDisplaySpan" id="repsDisplayLabel">Reps Left: </label>
+            <span id="repsDisplaySpan">0</span>
+          </div>
+          <div id="setsDisplay">
+            <label for="repsDisplaySpan" id="setsDisplayLabel">Sets Left: </label>
+            <span id="setsDisplaySpan">0</span>
+          </div>
+          <div id="timeDisplay">0</div>
+          <br>
+          <button class="timer-buttons" id="prev-set-button"><i class="fas fa-angle-double-left"></i></button>
+          <button class="timer-buttons" id="prev-rep-button"><i class="fas fa-angle-left"></i></button>
+
+          <button class="timer-buttons" id="startTimer"><i class="fas fa-play"></i></button>
+          <button class="timer-buttons" id="startBreakTimer"><i class="fas fa-bed"></i></button>
+          <button class="timer-buttons" id="pauseTimer"><i class="fas fa-pause"></i></button>
+          <button class="timer-buttons" id="resumeTimer"><i class="fas fa-play"></i></button>
+          <button class="timer-buttons" id="stopTimer"><i class="fas fa-reply"></i></button>
+
+          <button class="timer-buttons" id="next-rep-button"><i class="fas fa-angle-right"></i></button>
+          <button class="timer-buttons" id="next-set-button"><i class="fas fa-angle-double-right"></i></button>
+        </section>
+      </div>
+    </div>
+
+    <!-- Good Job Jo Modal -->
+    <div class="modal fade" id="finish-workout-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">You're amazing Mama!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="./assets/images/toby-face.jpg" alt="toby-image" id="toby-image">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
         </div>
-    </header>
-    <main class="container">
-        <div class="row">
-            <div class="col inputs">
-                <form class="input-form">
+      </div>
+    </div>
 
-                    <hr>
+    <!-- save modal -->
+    <div class="modal fade" id="save-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="save-modal-label">Save</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="modal-form">
+              <label for="modal-save-button">Enter Name:</label>
+              <input type="text" id="modal-save-input">
 
-                    <label for="repTotal" class="input-labels">Reps:</label>
-                    <i class="far fa-minus-square" id="minus-reps"></i>
-                    <input type="number" id="repTotal" class="input-inputs" name="repTotal" placeholder="0">
-                    <i class="far fa-plus-square" id="plus-reps"></i><br>
-
-                    <label for="restBetweenReps" class="input-labels">Rest:</label>
-                    <i class="far fa-minus-square" id="minus-rest"></i>
-                    <input type="number" id="restBetweenReps" class="input-inputs" name="restBetweenReps" placeholder="0">
-                    <i class="far fa-plus-square" id="plus-rest"></i><br>
-
-                    <hr>
-
-                    <label for="setTotal" class="input-labels">Sets:</label>
-                    <i class="far fa-minus-square" id="minus-sets"></i>
-                    <input type="number" id="setTotal" class="input-inputs" name="setTotal" placeholder="0">
-                    <i class="far fa-plus-square" id="plus-sets"></i><br>
-
-                    <label for="restBetweenSets" class="input-labels">Break:</label>
-                    <i class="far fa-minus-square" id="minus-break"></i>
-                    <input type="number" id="restBetweenSets" class="input-inputs" name="restBetweenSets" placeholder="0">
-                    <i class="far fa-plus-square" id="plus-break"></i><br>
-
-                </form>
-
-                <button class="save-load-button" id="load-button">Load</button>
-                <button class="save-load-button" id="save-button">Save</button>
-                <hr>
-            </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modal-save-button">Save</button>
+          </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <section id="timerSection">
-                    <br>
-                    <div id="repsDisplay">
-                        <label for="repsDisplaySpan" id="repsDisplayLabel">Reps Left: </label>
-                        <span id="repsDisplaySpan">0</span>
-                    </div>
-                    <div id="setsDisplay">
-                        <label for="repsDisplaySpan" id="setsDisplayLabel">Sets Left: </label>
-                        <span id="setsDisplaySpan">0</span>
-                    </div>
-                    <div id="timeDisplay">0</div>
-                    <br>
-                    <button class="timer-buttons" id="prev-set-button"><i class="fas fa-angle-double-left"></i></button>
-                    <button class="timer-buttons" id="prev-rep-button"><i class="fas fa-angle-left"></i></button>
+      </div>
+    </div>
 
-                    <button class="timer-buttons" id="startTimer"><i class="fas fa-play"></i></button>
-                    <button class="timer-buttons" id="startBreakTimer"><i class="fas fa-bed"></i></button>
-                    <button class="timer-buttons" id="pauseTimer"><i class="fas fa-pause"></i></button>
-                    <button class="timer-buttons" id="resumeTimer"><i class="fas fa-play"></i></button>
-                    <button class="timer-buttons" id="stopTimer"><i class="fas fa-reply"></i></button>
+    <!-- load modal -->
+    <div class="modal fade" id="load-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="load-modal-label">Load</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="load-modal-body">
+            <form id="load-form">
 
-                    <button class="timer-buttons" id="next-rep-button"><i class="fas fa-angle-right"></i></button>
-                    <button class="timer-buttons" id="next-set-button"><i class="fas fa-angle-double-right"></i></button>
-                </section>
-            </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="load-modal-button">Load</button>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Good Job Jo Modal -->
-        <div class="modal fade" id="finish-workout-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">You're amazing Mama!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="./assets/images/toby-face.jpg" alt="toby-image" id="toby-image">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- save modal -->
-        <div class="modal fade" id="save-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="save-modal-label">Save</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="modal-form">
-                            <label for="modal-save-button">Enter Name:</label>
-                            <input type="text" id="modal-save-input">
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modal-save-button">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- load modal -->
-        <div class="modal fade" id="load-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="load-modal-label">Load</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="load-modal-body">
-                        <form id="load-form">
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="load-modal-button">Load</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Toby Sleeping Modal -->
-        <!-- <div class="modal fade" id="sleepingModal" tabindex="-1" role="dialog" aria-labelledby="sleepingModalLabel" aria-hidden="true">
+    <!-- Toby Sleeping Modal -->
+    <!-- <div class="modal fade" id="sleepingModal" tabindex="-1" role="dialog" aria-labelledby="sleepingModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -180,30 +188,45 @@
             </div>
         </div> -->
 
-        <!-- Toast -->
-        <div class="toast" data-delay="1000">
-            <div class="toast-header">
-                <strong class="mr-auto">Toby Says</strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-            </div>
-            <div class="toast-body"></div>
-        </div>
-    </main>
-    <footer></footer>
+    <!-- Toast -->
+    <div class="toast" data-delay="1000">
+      <div class="toast-header">
+        <strong class="mr-auto">Toby Says</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body"></div>
+    </div>
+  </main>
+  <footer></footer>
 
-    <!-- bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <!-- bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
 
-    <!-- javascript -->
-    <script src="script.js"></script>
-    <script src="./public/js/plus-minus-buttons.js"></script>
-    <script src="./public/js/wake-lock.js"></script>
-    <script src="./public/js/fullscreen.js"></script>
-    <script src="./public/js/load-save.js"></script>
+  <!-- javascript -->
+  <script src="script.js"></script>
+  <script src="./public/js/plus-minus-buttons.js"></script>
+  <script src="./public/js/wake-lock.js"></script>
+  <script src="./public/js/fullscreen.js"></script>
+  <script src="./public/js/load-save.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js").then(reg => {
+          console.log("We found your service worker file!", reg);
+        });
+      });
+    }
+  </script>
 
 </body>
 
