@@ -3,7 +3,27 @@ const FILES_TO_CACHE = [
   '/index.html',
   '/manifest.webmanifest',
   '/style.css',
-  '/script.js'
+  '/script.js',
+  '/public/fullscreen.js',
+  '/public/load-save.js',
+  '/public/plus-minus-buttons.js',
+  '/public/wake-lock.js',
+  '/assets/start-beeps.wav',
+  '/assets/images/52567661_2280357498845139_6340121114789806080_n.jpg',
+  '/assets/images/119434969_754151932029884_2181244510018018777_n.png',
+  '/assets/images/119632782_3463441620345538_4659639724357311078_n.jpg',
+  '/assets/images/119889237_382589559403843_637469353409195833_n.jpg',
+  '/assets/images/119964053_1674963059352080_7664914611416996619_n.jpg',
+  '/assets/images/sky-boom-face.png',
+  '/assets/images/toby-face.jpg',
+  '/assets/images/toby-sleeping.jpg',
+  '/assets/images/favicons/android-chrome-192x192.png',
+  '/assets/images/favicons/android-chrome-512x512.png',
+  '/assets/images/favicons/apple-touch-icon.png',
+  '/assets/images/favicons/favicon-16x16-rounded.png',
+  '/assets/images/favicons/favicon-16x16.png',
+  '/assets/images/favicons/favicon-32x32.png',
+  '/assets/images/favicons/favicon.ico'
 ];
 
 const CACHE_NAME = "static-cache-v2";
