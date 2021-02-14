@@ -156,3 +156,7 @@ button {
 #toby-sleeping {
     width: 100%;
 }
+
+.toast-body {
+    color: black;
+}
